@@ -740,8 +740,8 @@
 
 #about { padding: 100px 0 140px; font-family: 'Open Sans', sans-serif; background: whitesmoke; }
 #about h1 { font-size: 1.9em; color: #7c8184; text-transform: uppercase; letter-spacing: 8px; margin-top: 30px; margin-bottom: 15px; }
-#about a { color: black; padding-bottom: 2px; border-bottom: 1px solid black; }
-#about a:hover { border-bottom: 1px dashed black; }
+#about a.normal { color: black; padding-bottom: 2px; border-bottom: 1px solid black; }
+#about a.normal:hover { border-bottom: 1px dashed black; }
 #about .dash { animation-duration: 3.5s; -webkit-animation-duration: 3.5s; -moz-animation-duration: 3.5s; -o-animation-duration: 3.5s; ms-animation-duration: 3.5s; background: lightgray; }
 #about p { color: #666666; margin: 0 auto; font-size: 1.4em; letter-spacing: 0.04em; line-height: 1.7em; font-weight: 300; }
 
