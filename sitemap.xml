@@ -6,9 +6,17 @@
             http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 <!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
 
+
 <url>
-  <loc>http://madhavsankar.github.io/</loc>
-  <lastmod>2016-05-22T14:44:12+00:00</lastmod>
-  <changefreq>monthly</changefreq>
+  <loc>https://madhavsankar.github.io/</loc>
+  <lastmod>2020-04-12T15:02:37+00:00</lastmod>
+  <priority>1.00</priority>
 </url>
+<url>
+  <loc>https://madhavsankar.github.io/resume/Resume.pdf</loc>
+  <lastmod>2020-04-12T15:02:37+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+
+
 </urlset>
