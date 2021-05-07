@@ -9,7 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Madhav Sankar K - Personal website">
-    <meta name="keywords" content="Madhav, Madhav Sankar, Madhav Sankar K, madhavsankar, portfolio, site">
+    <meta name="keywords" content="Madhav, Madhav Sankar, Madhav Sankar K, Madhav Sankar Krishnakumar, madhavsankar, portfolio, site">
 
     <link rel="stylesheet" href="./css/bootstrap.min.css">
     <link rel="stylesheet" href="./css/animate.min.css">
@@ -75,6 +75,12 @@ canvas {
   height: auto;
   padding-right: 5%;
 }
+.hightlight:hover {
+    color : white;
+}
+.white {
+    color: white;
+}
 
 #particles-js {
   position: absolute;
@@ -139,7 +145,7 @@ canvas {
         <a href="https://medium.com/@madhavsankar"><i class="fa fa-book"></i>Blog</a>
       </li>
       <li>
-        <a href="./resume/Resume.pdf"><i class="fa fa-file"></i>Resume</a>
+        <a href="https://docs.google.com/document/d/1kmf03nQaUxDhT0WI8ozuqNqh-Pw_Dj0gds7G_FToIvI/export?format=pdf"><i class="fa fa-file"></i>Resume</a>
       </li>
     </ul>
   </div>
@@ -197,13 +203,12 @@ canvas {
       <p class="concealed visible animated fadeInUp" >
                     <p>My name is Madhav. <a class="normal"><i class="fa fa-volume-up" onclick="playaudio()" aria-hidden="true"></i></a></p><p>Or more formally Madhav Sankar Krishnakumar.</p>
                     <p class="padded">
-                        I'm a Software Engineer based in Chennai, India currently working in the Security and Compliance Team of Microsoft.
-                        I graduated in July, 2019 from <a class="normal" href="http://www.nitt.edu/" target="_blank"> National Institute of Technology, Trichy</a> with a Bachelor's degree (with Hons) in Computer Science and a minor in Economics.<br />
+                        I am a Software Developer with 5+ years of experience in Full-Stack development who loves coding, solving problems and designing software. I am currently working as a Software Engineer at Microsoft Security and Compliance team.<br />
                     </p>
             </p>
 
                     <p class="padded">
-                        I'm a staunch believer in the immense impact programmers can make in the world and stride forward to do my part in it.
+                        Personally, I'm a staunch proponent of the Growth Mindset and strongly believe that technical skills coupled with perseverance can enable us to solve any complex problem.
                         Hence, I always look to improve myself and <a class="normal" href="http://madhavsankar.github.io/now">these</a> are few things that I'm currently investing my time on.
                     </p>
       </p>
@@ -215,6 +220,9 @@ canvas {
        <div class="dash animated fadeIn" ></div>
        <h5>Places I've worked/interned at:</h5>
        <p style="text-decoration:none">
+           <a class="img-link" href="https://www.ucla.edu/">
+               <img class="logos5" src="./images/UCLA.jpg">
+           </a>
            <a class="img-link" href="http://www.nitt.edu/" style="color:red">
                <img class="logos1" src="./images/Nitt.png">
            </a>
@@ -248,9 +256,9 @@ canvas {
 
         <div class="dash"></div>
                         <p class="light">
-                          <p> Programming Languages: C++, C, C#, Python</p>
-                           <p>Web Technologies: Javascript, Git, SQL, CSS, HTML</p>
-                          <p>Other interests: ML, Deep Learning, NLP, Quantum Computing</p>
+                          Programming Languages: C/C++, C#, Python<br />
+                          Web Technologies: JavaScript, Typescript, SQL, CSS, HTML<br />
+                          Other interests: ML, Deep Learning, NLP, Quantum Computing</p>
                           <div>
                                           <p>
                 I've worked with <font color="red"><span class="element"></span></font>
@@ -296,91 +304,81 @@ canvas {
       </div>
     </div>
 
-    <div class="row">
-      <div class="concealed visible animated fadeInUp">
-        <div class="flaticon">
-          <i class="flaticon-book82"></i>
-        </div>
-
-        <h3>Writing</h3>
-
-        <div class="dash"></div>
-                        <p class="light">
-                          <p>I write about interviews, life and tech stuff at my <a href="https://medium.com/@madhavsankar">blog</a>. I cover everything relevant to my life and work here.</p>
-
-        <div class="dash"></div>
-      </div>
-    </div>
-
   </div>
 </section>
 
+<section id="work">
+    <div class="container">
+        <h1 class="white">Work Experience</h1>
 
-      <section id="work">
-  <div class="container">
-    <h1>Projects</h1>
+        <div class="left col-md-8">
+            <h3 class="hightlight">Software Development Engineer, Microsoft</h3>
+            <div class="padded">
+                As part of the <a href="https://docs.microsoft.com/en-us/microsoft-365/compliance/overview-ediscovery-20?view=o365-worldwide">Advanced EDiscovery</a> team of <a href="https: //docs.microsoft.com/en-us/microsoft-365/compliance/?view =o365-worldwide"> M365 Security and Compliance</a>, led the E2E delivery of the LENS (Legal Enforcement and National Security) solution used by <a href="https://www.microsoft.com/en-us/legal/">Microsoft CELA </a>for legal enforcement data collection.<br /><br />
+                Designed a Azure Cloud Services based <a href="https://docs.microsoft.com/en-us/microsoft-365/compliance/archiving-third-party-data?view=o365-worldwide">File Connector</a> to import large items from third-party data sources into Microsoft 365 so that compliance solutions can be applied on them.
 
-    <div class="left col-md-8">
-        <h3>One World Family Application</h3>
-        <div class="padded">
-            One World Family App has volunteering activities posted by either NGOs or small groups, who require volunteers. Volunteers can select their preferred activity, apply and start volunteering. NGOs can post their opportunities and notifications will be sent out to all volunteers whose preference matches with the opportunity, and they will soon be matched with suitable volunteers.
-        </div>
-        <br>
-        <h3>Information Extraction from Financial Documents</h3>
-        <div class="padded">
-            Developed a Financial NER with CRFs that achieved an accuracy of 92% in identifying financial key-phrase.
-            Modified existing question-generation and answer-extraction modules to incorporate information from Financial NER; ROUGE-L score of answer extraction module increased from 0.909 to 0.969.
+            </div>
             <br>
-            Check out our <a href="https://github.com/madhavsankar/Question_Answering_System">repository</a>.
-            <br /><br />
-            Publication: Hariharan J., Madhav Sankar, K., Rajeswari, S., Vishal, V., 2020, RNN based Question Answer Generation and Ranking for financial documents using Financial NER - Accepted at Sadhana.
+            <h3 class="hightlight">Software Engineer Intern, Microsoft</h3>
+            <div class="padded">
+                As part of the <a href="https://www.microsoft.com/en-in/microsoft-365/sharepoint/collaboration">SharePoint</a> Desktop application team, successfully brought down the page load latency by six times and the application boot time by a staggering 42 times with the help of caching techniques and improvements in the Auth flow.
+            </div>
+            <br>
+        </div>
+        <div class="right col-md-4">
+            <h2 class="hightlight">Skills</h2>
+            <div class="bars">
+                <div class="bar concealed visible animated fadeInRight">Coding and Technical Skills</div>
+                <div class="bar concealed visible animated fadeInRight">Problem-Solving</div>
+                <div class="bar concealed visible animated fadeInRight">Full Stack Development</div>
+                <div class="bar concealed visible animated fadeInRight">Teamwork and Collaboration</div>
+                <div class="bar concealed visible animated fadeInRight">Cloud Computing</div>
+                <div class="bar concealed visible animated fadeInRight">Machine Learning</div>
+            </div>
+        </div>
 
-        </div>
-        <br>
-        <h3>Deterministic Dispersion Algorithm</h3>
-        <div class="padded">
-            Solved the problem of dispersion of 'n' mobile robots on an 'n' node ring in presence of two types of dynamism in the underlying graph: (i) vertex permutation and (ii) 1-interval connectivity.
-            <br /><br />
-            Publication: <a href="https://dl.acm.org/doi/10.1145/3154273.3154294">Agarwalla, A., Augustine, J., Moses Jr, W.K., Madhav, S.K. and Sridhar, A.K., 2018, January. Deterministic dispersion of mobile robots in dynamic rings. In Proceedings of the 19th International Conference on Distributed Computing and Networking (pp. 1-4).</a>
-        </div>
-        <br>
-        <h3>ViewPal</h3>
-        <div class="padded">
-            Developed a live video captioning model called ViewPal that was based on combining the information extracted from the video using a Convolutional Neural Network and extracting this information using a Recurrent Neural Network into a stream of meaningful sentences. Reads out the sentence to aid the visually challenged by providing a live relay of events around them.
+        <div class="clearfix"></div><br />
+
+        <h1 class="white">Projects</h1>
+
+        <div class="left col-md-6">
+            <h3 class="hightlight">One World Family Application</h3>
+            <div class="padded">
+                Developed an android application with a Django backend that helps to bring volunteers and NGOs together, as part of the Microsoft Hackathon.<br />
+            </div>
+            <br>
             <br />
-            Check out some sample <a href="https://github.com/madhavsankar/ViewPal">captions</a>.
+            <h3 class="hightlight">ViewPal</h3>
+            <div class="padded">
+                Prototyped a live video captioning model called ViewPal that extracts information from live video and converts it into a stream of meaningful sentences using PyTorch.
+                Aids the visually challenged by providing a live relay of events around them.<br />
+                <br />
+                Check out some sample <a href="https://github.com/madhavsankar/ViewPal">captions</a>.
+            </div>
         </div>
-        <br />
-        <h3>HotspotShare: An Android Application</h3>
-        <div class="padded">
-            Created an Android Application for sharing WiFi network without the need for sharing password by just scanning the QR code %using ZXing library for QR code generation of the extracted password.
-            <br>
-            Check out our <a href="https://github.com/madhavsankar/WiFiManager">repository</a>.
-        </div>
-    </div>
-      <br />
-    <div class="right col-md-4">
-      <h2>Skills</h2>
-      <div class="bars">
-          <div class="bar concealed visible animated fadeInRight">C/C++</div>
-          <div class="bar concealed visible animated fadeInRight">C#</div>
-          <div class="bar concealed visible animated fadeInRight">Python</div>
-          <div class="bar concealed visible animated fadeInRight">Javascript</div>
-          <div class="bar concealed visible animated fadeInRight">Machine Learning</div>
-          <div class="bar concealed visible animated fadeInRight">Deep Learning</div>
-          <div class="bar concealed visible animated fadeInRight">NLP</div>
-          <div class="bar concealed visible animated fadeInRight">SQL</div>
-          <div class="bar concealed visible animated fadeInRight">Git</div>
-          <div class="bar concealed visible animated fadeInRight">Azure</div>
-          <div class="bar concealed visible animated fadeInRight">Pytorch</div>
-          <div class="bar concealed visible animated fadeInRight">TensorFlow</div>
-          <div class="bar concealed visible animated fadeInRight">Keras</div>
-          <div class="bar concealed visible animated fadeInRight">.NET Framework</div>
-      </div>
-    </div>
+        <div class="right col-md-6">
+            <h3 class="hightlight">Deterministic Dispersion Algorithm</h3>
+            <div class="padded">
+                Solved the problem of dispersion of 'n' Mobile Robots on an 'n' node ring in presence of two types of dynamism in the underlying graph: (i) vertex permutation and (ii) 1-interval connectivity.
+                [<a href="https://dl.acm.org/doi/10.1145/3154273.3154294">Publication</a>].
+            </div>
+            
+            <br />
+            <br />
+            <h3 class="hightlight">Financial Information Extraction</h3>
+            <div class="padded">
+                Developed a Financial NER with CRFs that achieved an accuracy of 92% in identifying financial key-phrases. <br />
+                Upgraded existing question-answer models to incorporate information from Financial NER.
+                [<a href="https://link.springer.com/article/10.1007/s12046-020-01501-3">Publication</a>].
+                <br />
+                Check out our <a href="https://github.com/madhavsankar/Question_Answering_System">repository</a>.
 
-    <div class="clearfix"></div>
-  </div>
+
+            </div>
+
+        </div>
+        <div class="clearfix"></div>
+    </div>
 </section>
 
       <section id="contact">
@@ -401,11 +399,9 @@ canvas {
      <div>
 
           <h1>Here's my resumé</h1>
-          <p>
-          <a class="contact" href="./resume/Resume.pdf">
+          <a class="contact" href="https://docs.google.com/document/d/1kmf03nQaUxDhT0WI8ozuqNqh-Pw_Dj0gds7G_FToIvI/export?format=pdf">
             Resumé<i class="fa fa-file-pdf-o" aria-hidden="true"></i>
           </a>
-      </p>
   </div>
 </section>
 
@@ -443,7 +439,7 @@ canvas {
     </ul>
 
     <div class="license">
-      2020 Madhav Sankar K.
+      2021 Madhav Sankar K.
         <br/>
       Made with lots of &hearts;
     </div>
@@ -454,7 +450,7 @@ canvas {
     <script>
 	  $(function(){
 	      $(".element").typed({
-	        strings: ["C/C++","Javascript","SQL","Python","C#","Django","Pytorch","TensorFlow","Keras","scikit-learn","numpy","pandas",".NET Framework"],
+	        strings: ["C/C++","JavaScript","SQL","Python","C#","Django","Pytorch","TensorFlow","Keras","scikit-learn","numpy","pandas",".NET Framework","Typescript","Azure Cloud Services","Kubernetes","Docker","Powershell cmdlets","ReactJS"],
 	        typeSpeed: 0,
     		// time before typing starts
 			startDelay: 2,

@@ -778,6 +778,7 @@
 #work .right h2 { padding: 20px; margin: 0; font-size: 1.7em; background: #3a3a3a; }
 #work .right .bars { padding: 20px; background: #353535; }
 #work .bar { width: 100%; font-size: 1.2em; font-weight: 400; text-transform: uppercase; letter-spacing: 2px; text-align: left; margin-bottom: 18px; color: #727272; animation-duration: 1s; -webkit-animation-duration: 1s; -moz-animation-duration: 1s; -o-animation-duration: 1s; ms-animation-duration: 1s; }
+#work .bar:hover { color: white; }
 #work .bar i { font-size: 0.7em; color: #5e5e5e; margin: 0 7px; }
 
 #contact { padding-top: 120px; padding-bottom: 200px; position: relative; border-color: whitesmoke; background: whitesmoke; color: gray; text-align: center; }
