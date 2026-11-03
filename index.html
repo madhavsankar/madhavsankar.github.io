@@ -202,113 +202,100 @@
       <section class="content-section" id="work" aria-labelledby="work-title">
         <p class="section-kicker">03.</p>
         <h2 class="section-heading" id="work-title">Selected work</h2>
-        <p class="work-intro">Featured case studies, followed by selected platform engineering, AI, accessibility, and research projects.</p>
-        <div class="project-filters" role="group" aria-label="Filter work by category">
-          <button class="filter-button" type="button" data-category="all" aria-pressed="true">All</button>
-          <button class="filter-button" type="button" data-category="platform" aria-pressed="false">Platforms</button>
-          <button class="filter-button" type="button" data-category="ai" aria-pressed="false">AI &amp; ML</button>
-          <button class="filter-button" type="button" data-category="research" aria-pressed="false">Research</button>
-        </div>
+        <p class="work-intro">A few projects I’ve led across Google Ads platform engineering and agentic AI. Browse the archive for additional projects and research.</p>
         <div class="project-grid">
-          <article class="project-card featured-project" data-categories="platform ai">
+          <article class="project-card featured-project">
             <div class="project-topline"><span class="project-icon" aria-hidden="true">⌘</span><span class="number">FEATURED · 01</span></div>
-            <h3>Agentic AI &amp; developer automation</h3>
-            <p class="featured-summary">Building the evaluation and automation layer around AI agents on the Google Ads API platform.</p>
+            <h3>Google Ads API MCP server &amp; evaluation framework</h3>
+            <p class="featured-summary">Building an MCP server for Google Ads API that can work across AI coding harnesses, alongside evaluations that surface capability gaps and regressions.</p>
             <div class="case-study-grid">
               <div>
                 <h4>The challenge</h4>
-                <p>Agent-powered workflows need dependable quality signals, a smooth client-team setup, and safe ways to take action in a large codebase.</p>
+                <p>Developers use different AI coding harnesses. The Google Ads API tools need a consistent MCP interface and a way to identify where agent capabilities fall short or regress.</p>
               </div>
               <div>
                 <h4>My contribution</h4>
-                <p>Lead an MCP-tool evaluation framework with daily health checks, regression runs, environment comparisons, alerting, and per-step tool-call, latency, and token metrics. I also built an onboarding assistant and an autonomous code-health agent that proposes verified cleanup changes.</p>
+                <p>Developed the Google Ads API MCP server to work with MCP-capable harnesses such as Antigravity and Claude Code. Built an evaluation framework with daily health checks, regression runs, environment comparisons, alerting, and per-step tool-call, latency, and token metrics.</p>
+              </div>
+              <aside class="case-study-outcomes">
+                <h4>Evaluation focus</h4>
+                <ul>
+                  <li>Surface capability gaps through recurring health checks.</li>
+                  <li>Identify regressions across environments.</li>
+                  <li>Track tool-call, latency, and token metrics per step.</li>
+                </ul>
+              </aside>
+            </div>
+            <div class="tag-list"><span class="tag">Google Ads API</span><span class="tag">MCP</span><span class="tag">AI coding harnesses</span><span class="tag">Evaluation</span></div>
+            <a href="https://developers.google.com/google-ads/api/docs/developer-toolkit/mcp-server" target="_blank" rel="noopener noreferrer">Google Ads API MCP server ↗</a>
+          </article>
+          <article class="project-card featured-project">
+            <div class="project-topline"><span class="project-icon" aria-hidden="true">◈</span><span class="number">FEATURED · 02</span></div>
+            <h3>Agentic workflows for the team</h3>
+            <p class="featured-summary">Improving team-wide development workflows with agents for onboarding, code health, and code review.</p>
+            <div class="case-study-grid">
+              <div>
+                <h4>The challenge</h4>
+                <p>Help teams get started with the platform and improve recurring engineering workflows across the organization.</p>
+              </div>
+              <div>
+                <h4>My contribution</h4>
+                <p>Built an onboarding assistant that validates client-team setup, a code-health agent that proposes verified cleanup changes, and a code-review agent to support the team’s review workflow.</p>
               </div>
               <aside class="case-study-outcomes">
                 <h4>Outcomes</h4>
                 <ul>
                   <li>Reduced average onboarding time by 80%.</li>
-                  <li>Removed about 100 stale flags and 1,750 lines of code and configuration in the agent’s first six weeks.</li>
-                  <li>Surface agent capability gaps through recurring evaluation and regression runs.</li>
+                  <li>The code-health agent removed about 100 stale flags and 1,750 lines of code and configuration in its first six weeks.</li>
+                  <li>Extended agent support to onboarding, code health, and code review.</li>
                 </ul>
               </aside>
             </div>
-            <div class="tag-list"><span class="tag">MCP</span><span class="tag">AI agents</span><span class="tag">Evaluation</span><span class="tag">Developer tooling</span></div>
+            <div class="tag-list"><span class="tag">Agentic AI</span><span class="tag">Developer workflows</span><span class="tag">Onboarding</span><span class="tag">Code health</span><span class="tag">Code review</span></div>
           </article>
-          <article class="project-card featured-project" data-categories="platform">
-            <div class="project-topline"><span class="project-icon" aria-hidden="true">↗</span><span class="number">FEATURED · 02</span></div>
-            <h3>Google Ads API platform modernization</h3>
-            <p class="featured-summary">Improving the scalability and developer experience of a large API platform through data-layer migration, asynchronous execution, and resource-aware protections.</p>
+          <article class="project-card featured-project">
+            <div class="project-topline"><span class="project-icon" aria-hidden="true">↗</span><span class="number">FEATURED · 03</span></div>
+            <h3>Google Ads API ORM migration</h3>
+            <p class="featured-summary">Modernizing the API platform’s data layer through a staged ORM migration across more than 25 product teams.</p>
             <div class="case-study-grid">
               <div>
                 <h4>The challenge</h4>
-                <p>Modernize a shared platform used across many product teams while maintaining service performance and protecting common infrastructure from uneven customer load.</p>
+                <p>Move a shared API platform to a new ORM while keeping a large set of product teams moving and reducing migration risk and integration overhead.</p>
               </div>
               <div>
                 <h4>My contribution</h4>
-                <p>Led an ORM migration across 25+ teams, built incremental migration support and compile-time guardrails, and developed a generative-AI-assisted code migration tool. Designed per-customer database-load rate limiting, including streaming reads and a quota cache, and helped move the critical request path to non-blocking I/O.</p>
+                <p>Led the data-layer migration across 25+ product teams, and built incremental migration support, compile-time guardrails, and a generative-AI-assisted code migration tool.</p>
               </div>
               <aside class="case-study-outcomes">
                 <h4>Outcomes</h4>
                 <ul>
                   <li>Cut projected migration effort by about 50% and interop latency by about 75%.</li>
                   <li>Reduced developer time on code migration by more than 70% with the generative-AI tool.</li>
-                  <li>Reached up to 2.5× higher peak throughput in stress tests; drove async framework adoption across 15 teams.</li>
                 </ul>
               </aside>
             </div>
-            <div class="tag-list"><span class="tag">Distributed systems</span><span class="tag">Async I/O</span><span class="tag">Rate limiting</span><span class="tag">ORM migration</span><span class="tag">Generative AI</span></div>
-            <a href="https://developers.google.com/google-ads/api/docs/start" target="_blank" rel="noopener noreferrer">Google Ads API documentation ↗</a>
+            <div class="tag-list"><span class="tag">Google Ads API</span><span class="tag">ORM</span><span class="tag">Data migration</span><span class="tag">Developer tooling</span></div>
           </article>
-          <article class="project-card featured-project" data-categories="platform">
-            <div class="project-topline"><span class="project-icon" aria-hidden="true">⌘</span><span class="number">FEATURED · 03</span></div>
-            <h3>Microsoft 365 compliance &amp; legal data systems</h3>
-            <p class="featured-summary">Building compliance capabilities that help enterprise customers manage legal data collection and bring third-party information into Microsoft 365.</p>
-            <div class="case-study-grid">
-              <div>
-                <h4>The challenge</h4>
-                <p>Legal teams needed a reliable way to collect enforcement data, and customers needed to bring large third-party items into Microsoft 365 despite existing file-size limits.</p>
-              </div>
-              <div>
-                <h4>My contribution</h4>
-                <p>Led end-to-end delivery of LENS (Legal Enforcement and National Security) for Microsoft CELA. Designed an Azure Cloud Services File Connector to ingest large third-party items and collaborated with CellTrust to onboard SL2 data.</p>
-              </div>
-              <aside class="case-study-outcomes">
-                <h4>Outcomes</h4>
-                <ul>
-                  <li>Delivered LENS in six months.</li>
-                  <li>File Connector overcame the 10 MB limit and opened a $3B market opportunity.</li>
-                  <li>Reduced Connectors page latency by 96% through asynchronous programming and Azure Table schema changes.</li>
-                </ul>
-              </aside>
-            </div>
-            <div class="tag-list"><span class="tag">Microsoft 365</span><span class="tag">Azure</span><span class="tag">Compliance</span><span class="tag">Distributed services</span></div>
+          <article class="project-card">
+            <div class="project-topline"><span class="project-icon" aria-hidden="true">⌁</span><span class="number">GOOGLE ADS API</span></div>
+            <h3>API rate limiting</h3>
+            <p class="role-date">Software Engineer III · February 2023 – March 2026</p>
+            <p>Designed per-customer throttling to protect underlying services such as databases from overload across external and internal API traffic. The limits account for request spikes and resource usage, with streaming-read support and a quota cache to absorb traffic surges.</p>
+            <div class="tag-list"><span class="tag">Distributed systems</span><span class="tag">Rate limiting</span><span class="tag">API reliability</span><span class="tag">Database protection</span></div>
           </article>
-          <article class="project-card" data-categories="research">
-            <div class="project-topline"><span class="project-icon" aria-hidden="true">⌁</span><span class="number">04</span></div>
-            <h3>Mobile robot dispersion on dynamic rings</h3>
-            <p>Research on deterministic dispersion of mobile robots under vertex permutation and 1-interval connectivity; presented at ICDCN 2018.</p>
-            <div class="tag-list"><span class="tag">Distributed algorithms</span><span class="tag">Robotics</span><span class="tag">ICDCN 2018</span></div>
-            <a href="https://arxiv.org/abs/1707.06391" target="_blank" rel="noopener noreferrer">Read the paper ↗</a>
+          <article class="project-card">
+            <div class="project-topline"><span class="project-icon" aria-hidden="true">↗</span><span class="number">MICROSOFT 365</span></div>
+            <h3>Third-party data Connector</h3>
+            <p class="role-date">Security &amp; Compliance · July 2021 – August 2021</p>
+            <p>Designed an Azure Cloud Services File Connector to bring large third-party items into Microsoft 365, overcoming a 10 MB size restriction and opening a $3B market opportunity. Worked with CellTrust to onboard SL2 Connectors.</p>
+            <div class="tag-list"><span class="tag">Azure Cloud Services</span><span class="tag">Microsoft 365</span><span class="tag">Compliance</span><span class="tag">Data connectors</span></div>
           </article>
-          <article class="project-card" data-categories="ai research">
-            <div class="project-topline"><span class="project-icon" aria-hidden="true">◉</span><span class="number">05</span></div>
-            <h3>Financial document QA &amp; NER</h3>
-            <p>Research combining financial named-entity recognition with question-answer generation and ranking for financial documents.</p>
-            <div class="tag-list"><span class="tag">NLP</span><span class="tag">Financial NER</span><span class="tag">Research</span></div>
-            <a href="https://link.springer.com/article/10.1007/s12046-020-01501-3" target="_blank" rel="noopener noreferrer">Read the Sādhanā paper ↗</a>
-          </article>
-          <article class="project-card" data-categories="ai research">
-            <div class="project-topline"><span class="project-icon" aria-hidden="true">⌘</span><span class="number">06</span></div>
-            <h3>QCPG++ · Quality-controlled paraphrase generation</h3>
-            <p>At UCLA, developed a text-diversity framework and an encoder-decoder model conditioned on quality vectors to generate paraphrases with targeted morphological, phonological, and syntactic diversity. A quality predictor estimates diversity ranges for good-quality paraphrases; trained models were published on Hugging Face.</p>
-            <div class="tag-list"><span class="tag">UCLA</span><span class="tag">NLP</span><span class="tag">Paraphrase generation</span><span class="tag">Hugging Face</span></div>
-          </article>
-          <article class="project-card" data-categories="ai">
-            <div class="project-topline"><span class="project-icon" aria-hidden="true">◌</span><span class="number">07</span></div>
-            <h3>ViewPal live video captioning</h3>
-            <p>A CNN and RNN-based prototype that turns live video into spoken descriptions to help visually challenged people follow surrounding events.</p>
-            <div class="tag-list"><span class="tag">Computer vision</span><span class="tag">Deep learning</span><span class="tag">Accessibility</span></div>
-            <a href="https://github.com/madhavsankar/ViewPal" target="_blank" rel="noopener noreferrer">View the project ↗</a>
+          <article class="project-card">
+            <div class="project-topline"><span class="project-icon" aria-hidden="true">⌘</span><span class="number">MICROSOFT 365</span></div>
+            <h3>LENS · Legal Enforcement and National Security</h3>
+            <p class="role-date">Microsoft CELA · July 2019 – July 2021</p>
+            <p>Led end-to-end delivery of LENS in six months to support Microsoft CELA’s legal-enforcement data collection.</p>
+            <div class="tag-list"><span class="tag">Microsoft 365</span><span class="tag">Security &amp; Compliance</span><span class="tag">Legal data collection</span></div>
           </article>
         </div>
         <p class="archive-link-row"><a class="button button-secondary" href="archive.html">Explore the project archive <span aria-hidden="true">→</span></a></p>
