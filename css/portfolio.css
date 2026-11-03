@@ -668,6 +668,11 @@ button {
   line-height: 1.35;
 }
 
+.archive-grid .archive-contributors {
+  margin-top: 10px;
+  font-size: 12px;
+}
+
 .archive-back-link {
   margin: 32px 0 0;
   font-family: var(--mono);
