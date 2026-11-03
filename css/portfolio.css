@@ -271,11 +271,54 @@ button {
 }
 
 .side-rail a {
+  position: relative;
+  display: grid;
+  width: 30px;
+  height: 30px;
+  place-items: center;
   color: var(--light-slate);
-  font-family: var(--mono);
-  font-size: 12px;
-  writing-mode: vertical-rl;
   transition: color 150ms ease, transform 150ms ease;
+}
+
+.side-rail a svg {
+  display: block;
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+}
+
+.side-rail a .research-icon {
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.7;
+}
+
+.side-rail a::after {
+  position: absolute;
+  top: 50%;
+  left: calc(100% + 12px);
+  padding: 6px 9px;
+  border-radius: 3px;
+  background: var(--light-navy);
+  color: var(--green);
+  content: attr(data-tooltip);
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0;
+  opacity: 0;
+  pointer-events: none;
+  text-transform: none;
+  transform: translate(-4px, -50%);
+  transition: opacity 150ms ease, transform 150ms ease;
+  white-space: nowrap;
+}
+
+.side-rail a:hover::after,
+.side-rail a:focus-visible::after {
+  opacity: 1;
+  transform: translate(0, -50%);
 }
 
 .side-rail a:hover {
