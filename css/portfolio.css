@@ -630,6 +630,55 @@ button {
   font-size: 12px;
 }
 
+.archive-link-row {
+  margin: 28px 0 0;
+  text-align: center;
+}
+
+.archive-main {
+  width: min(100% - 48px, 1000px);
+  min-height: calc(100vh - 90px);
+  margin: 0 auto;
+  padding: 132px 0 80px;
+}
+
+.archive-main .section-heading {
+  margin-bottom: 12px;
+}
+
+.archive-intro {
+  max-width: 680px;
+  margin: 0 0 32px;
+}
+
+.archive-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.archive-grid .project-card {
+  min-height: 270px;
+}
+
+.archive-grid .project-card h2 {
+  margin: 15px 0 8px;
+  color: var(--white);
+  font-size: 18px;
+  line-height: 1.35;
+}
+
+.archive-grid .archive-contributors {
+  margin-top: 10px;
+  font-size: 12px;
+}
+
+.archive-back-link {
+  margin: 32px 0 0;
+  font-family: var(--mono);
+  font-size: 13px;
+}
+
 .credentials-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -744,6 +793,10 @@ button {
   .primary-nav a span {
     font-size: 12px;
   }
+
+  .archive-nav a {
+    font-size: 12px;
+  }
 }
 
 @media (max-width: 700px) {
@@ -835,8 +888,14 @@ button {
   }
 
   .project-grid,
+  .archive-grid,
   .credentials-grid {
     grid-template-columns: 1fr;
+  }
+
+  .archive-main {
+    width: min(100% - 40px, 600px);
+    padding-top: 106px;
   }
 
   .project-card.featured-project {
@@ -850,6 +909,10 @@ button {
 
   .project-card {
     min-height: 210px;
+  }
+
+  .archive-grid .project-card {
+    min-height: 0;
   }
 
   .contact-section {
