@@ -16,6 +16,12 @@
     <script src="js/portfolio.js" defer></script>
   </head>
   <body>
+    <div class="page-loader" aria-hidden="true">
+      <svg class="loader-mark" viewBox="0 0 84 96">
+        <polygon points="42 4 78 24 78 68 42 90 6 68 6 24"></polygon>
+        <path d="M25 65V32h6.5L42 50.5 52.5 32H59v33h-6.2V44.2l-9 15.3h-3.6l-9-15.3V65z"></path>
+      </svg>
+    </div>
     <a class="skip-link" href="#main">Skip to content</a>
 
     <header class="site-header">
@@ -26,7 +32,11 @@
           <path d="M25 65V32h6.5L42 50.5 52.5 32H59v33h-6.2V44.2l-9 15.3h-3.6l-9-15.3V65z" fill="currentColor"></path>
         </svg>
       </a>
-      <nav class="primary-nav" aria-label="Main navigation">
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation" aria-label="Open navigation menu">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="menu-backdrop" aria-hidden="true"></div>
+      <nav class="primary-nav" id="primary-navigation" aria-label="Main navigation">
         <a href="#about"><span>01.</span> About</a>
         <a href="#experience"><span>02.</span> Experience</a>
         <a href="#work"><span>03.</span> Work</a>
