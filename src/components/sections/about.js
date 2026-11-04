@@ -23,9 +23,9 @@ const StyledText = styled.div`
   p {
     color: var(--slate);
     font-family: var(--font-sans);
-    font-size: var(--fz-lg);
+    font-size: var(--fz-md);
     font-weight: 400;
-    line-height: 1.55;
+    line-height: 1.65;
   }
 
   ul.skills-list {

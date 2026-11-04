@@ -48,7 +48,7 @@ const StyledHeroSection = styled.section`
     margin: 0 0 30px 4px;
     color: var(--green);
     font-family: var(--font-mono);
-    font-size: clamp(var(--fz-sm), 5vw, var(--fz-md));
+    font-size: 13px;
     font-weight: 400;
 
     @media (max-width: 480px) {
@@ -58,23 +58,24 @@ const StyledHeroSection = styled.section`
 
   h1.big-heading {
     max-width: 100%;
-    font-size: clamp(2.25rem, 4.5vw, 4.5rem);
-    line-height: 1.02;
-    letter-spacing: -0.035em;
+    font-size: clamp(2.25rem, 4.5vw, 4rem);
+    line-height: 1.08;
+    letter-spacing: -0.055em;
   }
 
   h2.big-heading {
     max-width: 100%;
     margin-top: 8px;
     color: var(--slate);
-    font-size: clamp(1.75rem, 3.8vw, 3.25rem);
-    line-height: 1.08;
-    letter-spacing: -0.025em;
+    font-size: clamp(1.75rem, 3.8vw, 3rem);
+    line-height: 1.16;
+    letter-spacing: -0.035em;
   }
 
   p {
     max-width: 600px;
     margin: 20px 0 0;
+    font-size: clamp(16px, 2vw, 18px);
   }
 
   .hero-actions {

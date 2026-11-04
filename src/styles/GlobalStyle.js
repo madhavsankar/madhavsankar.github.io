@@ -77,12 +77,8 @@ const GlobalStyle = createGlobalStyle`
     background-color: var(--navy);
     color: var(--slate);
     font-family: var(--font-sans);
-    font-size: var(--fz-xl);
-    line-height: 1.3;
-
-    @media (max-width: 480px) {
-      font-size: var(--fz-lg);
-    }
+    font-size: var(--fz-md);
+    line-height: 1.65;
 
     &.hidden {
       overflow: hidden;
@@ -185,7 +181,7 @@ const GlobalStyle = createGlobalStyle`
     position: relative;
     margin: 10px 0 40px;
     width: 100%;
-    font-size: clamp(26px, 5vw, var(--fz-heading));
+    font-size: clamp(23px, 4vw, 30px);
     white-space: nowrap;
 
     &:before {

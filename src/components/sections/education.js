@@ -22,7 +22,7 @@ const StyledEducationSection = styled.section`
     h3 {
       margin: 0 0 20px;
       color: var(--lightest-slate);
-      font-size: var(--fz-xxl);
+      font-size: var(--fz-lg);
     }
 
     p,
