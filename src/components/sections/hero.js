@@ -40,7 +40,7 @@ const StyledHeroSection = styled.section`
   .hero-content {
     position: relative;
     z-index: 1;
-    max-width: 760px;
+    max-width: 1000px;
     margin-top: 40px;
   }
 
@@ -57,17 +57,17 @@ const StyledHeroSection = styled.section`
   }
 
   h1.big-heading {
-    max-width: 950px;
-    font-size: clamp(2.25rem, 5.8vw, 4.5rem);
+    max-width: 100%;
+    font-size: clamp(2.25rem, 4.5vw, 4.5rem);
     line-height: 1.02;
     letter-spacing: -0.035em;
   }
 
   h2.big-heading {
-    max-width: 900px;
+    max-width: 100%;
     margin-top: 8px;
     color: var(--slate);
-    font-size: clamp(1.75rem, 4.2vw, 3.25rem);
+    font-size: clamp(1.75rem, 3.8vw, 3.25rem);
     line-height: 1.08;
     letter-spacing: -0.025em;
   }

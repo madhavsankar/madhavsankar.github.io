@@ -96,13 +96,21 @@ const StyledProject = styled.li`
   .project-detail ul {
     margin: 0;
     color: var(--light-slate);
+    font-family: var(--font-sans);
     font-size: var(--fz-md);
+    font-weight: 400;
     line-height: 1.65;
   }
 
   .project-detail ul {
     ${({ theme }) => theme.mixins.fancyList};
     padding-left: 20px;
+  }
+
+  .project-detail li {
+    font-family: var(--font-sans);
+    font-size: var(--fz-md);
+    line-height: 1.65;
   }
 
   .project-detail li + li {

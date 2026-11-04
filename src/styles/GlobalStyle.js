@@ -190,7 +190,7 @@ const GlobalStyle = createGlobalStyle`
 
     &:before {
       position: relative;
-      bottom: 4px;
+      bottom: 0;
       counter-increment: section;
       content: '0' counter(section) '.';
       margin-right: 10px;
@@ -209,7 +209,7 @@ const GlobalStyle = createGlobalStyle`
       content: '';
       display: block;
       position: relative;
-      top: -5px;
+      top: 0;
       width: 300px;
       height: 1px;
       margin-left: 20px;

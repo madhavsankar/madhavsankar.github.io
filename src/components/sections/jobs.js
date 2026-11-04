@@ -126,6 +126,10 @@ const StyledTabPanel = styled.div`
     border-top: 1px solid var(--lightest-navy);
   }
 
+  .research-content {
+    margin-top: 24px;
+  }
+
   .role-range {
     margin: 10px 0 22px;
     color: var(--green);
@@ -246,7 +250,9 @@ const Jobs = () => {
                   </p>
                 )}
                 <div
-                  className="experience-content"
+                  className={`experience-content${
+                    frontmatter.company === 'Research' ? ' research-content' : ''
+                  }`}
                   dangerouslySetInnerHTML={{ __html: html }}
                 />
               </StyledTabPanel>
