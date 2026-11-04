@@ -8,13 +8,13 @@ import sr from '@utils/sr';
 import { usePrefersReducedMotion } from '@hooks';
 
 const StyledJobsSection = styled.section`
-  max-width: 900px;
+  max-width: 1100px;
 
   .inner {
     display: flex;
     min-height: 340px;
 
-    @media (max-width: 600px) {
+    @media (max-width: 768px) {
       display: block;
     }
   }
@@ -27,7 +27,7 @@ const StyledTabList = styled.div`
   padding: 0;
   margin: 0;
 
-  @media (max-width: 600px) {
+  @media (max-width: 768px) {
     display: flex;
     overflow-x: auto;
     width: calc(100% + 100px);
@@ -64,7 +64,7 @@ const StyledTabButton = styled.button`
     background-color: var(--light-navy);
   }
 
-  @media (max-width: 600px) {
+  @media (max-width: 768px) {
     justify-content: center;
     min-width: 120px;
     padding: 0 15px;
@@ -80,7 +80,7 @@ const StyledTabPanels = styled.div`
   width: 100%;
   margin-left: 20px;
 
-  @media (max-width: 600px) {
+  @media (max-width: 768px) {
     margin-left: 0;
   }
 `;
@@ -95,20 +95,19 @@ const StyledTabPanel = styled.div`
   }
 
   h3 {
-    margin-bottom: 2px;
+    margin-bottom: 6px;
+    color: var(--green);
     font-size: var(--fz-xxl);
     font-weight: 500;
     line-height: 1.3;
-
-    .company {
-      color: var(--green);
-    }
   }
 
   h4 {
-    margin: 1.4rem 0 0.4rem;
+    margin: 0;
     color: var(--lightest-slate);
     font-size: var(--fz-lg);
+    font-weight: 500;
+    line-height: 1.4;
   }
 
   p,
@@ -117,10 +116,32 @@ const StyledTabPanel = styled.div`
   }
 
   .range {
-    margin-bottom: 25px;
-    color: var(--light-slate);
+    margin: 0 0 24px;
+    color: var(--green);
     font-family: var(--font-mono);
     font-size: var(--fz-xs);
+  }
+
+  .experience-content {
+    border-top: 1px solid var(--lightest-navy);
+  }
+
+  .role-range {
+    margin: 10px 0 22px;
+    color: var(--green);
+    font-family: var(--font-mono);
+    font-size: var(--fz-xs);
+  }
+
+  .experience-content hr {
+    height: 1px;
+    margin: 28px 0;
+    border: 0;
+    background: var(--lightest-navy);
+  }
+
+  .experience-content ul {
+    margin: 0;
   }
 `;
 
@@ -133,7 +154,6 @@ const Jobs = () => {
       ) {
         nodes {
           frontmatter {
-            title
             company
             location
             range
@@ -213,20 +233,19 @@ const Jobs = () => {
                 aria-hidden={activeTabId !== index}
                 hidden={activeTabId !== index}>
                 <h3>
-                  <span>{frontmatter.title}</span>
-                  <span className="company">
-                    &nbsp;@&nbsp;
-                    {frontmatter.url ? (
-                      <a href={frontmatter.url}>{frontmatter.company}</a>
-                    ) : (
-                      frontmatter.company
-                    )}
-                  </span>
+                  {frontmatter.url ? (
+                    <a href={frontmatter.url}>{frontmatter.company}</a>
+                  ) : (
+                    frontmatter.company
+                  )}
                 </h3>
                 <p className="range">
                   {frontmatter.location} · {frontmatter.range}
                 </p>
-                <div dangerouslySetInnerHTML={{ __html: html }} />
+                <div
+                  className="experience-content"
+                  dangerouslySetInnerHTML={{ __html: html }}
+                />
               </StyledTabPanel>
             </CSSTransition>
           ))}

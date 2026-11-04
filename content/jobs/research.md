@@ -1,31 +1,44 @@
 ---
-title: Academic and research experience
 company: Research
 location: UCLA · IIT Hyderabad · NIT Tiruchirappalli · IIT Madras
 range: May 2017 – February 2023
 sortOrder: 3
 ---
 
-#### Graduate Researcher · University of California, Los Angeles (June 2022 – February 2023)
+#### Graduate Researcher · University of California, Los Angeles
+
+<p class="role-range">June 2022 – February 2023</p>
 
 Advised by Prof. Miryung Kim.
 
 - Created a text-diversity metrics framework and quality predictor, and developed QCPG++, an encoder-decoder paraphrase model that targets syntactic, phonological, and morphological diversity while maximizing meaning preservation. Models were published on Hugging Face.
 
-#### Deep Learning Research Intern · IIT Hyderabad (December 2017)
+<hr />
+
+#### Deep Learning Research Intern · IIT Hyderabad
+
+<p class="role-range">December 2017</p>
 
 Advised by Prof. Sparsh Mittal.
 
 - Investigated convolutional neural network models and compression techniques, and developed ViewPal, a live video-captioning model combining CNN and RNN processing.
 
-#### Researcher · NIT Tiruchirappalli (January – May 2019)
+<hr />
+
+#### Researcher · NIT Tiruchirappalli
+
+<p class="role-range">January – May 2019</p>
 
 Advised by Prof. Rajeswari Sridhar.
 
 - Developed a financial named-entity recognizer using Conditional Random Fields that achieved 92% accuracy in identifying financial key phrases.
 - Upgraded question-generation and answer-extraction modules to use the extracted entities, increasing answer-extraction ROUGE-L from 0.909 to 0.969.
 
-#### Distributed Algorithms Research Intern · IIT Madras (May – July 2017)
+<hr />
+
+#### Distributed Algorithms Research Intern · IIT Madras
+
+<p class="role-range">May – July 2017</p>
 
 Advised by Prof. John Augustine.
 
