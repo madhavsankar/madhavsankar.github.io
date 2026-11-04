@@ -108,6 +108,54 @@ button {
   gap: clamp(14px, 2.4vw, 32px);
 }
 
+.menu-toggle,
+.menu-backdrop {
+  display: none;
+}
+
+.menu-toggle {
+  position: relative;
+  z-index: 12;
+  width: 44px;
+  height: 44px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--lightest-navy);
+  border-radius: 4px;
+  background: transparent;
+  color: var(--green);
+  cursor: pointer;
+}
+
+.menu-toggle span {
+  position: absolute;
+  width: 20px;
+  height: 2px;
+  border-radius: 2px;
+  background: currentColor;
+  transition: transform 180ms ease, opacity 180ms ease;
+}
+
+.menu-toggle span:nth-child(1) {
+  transform: translateY(-6px);
+}
+
+.menu-toggle span:nth-child(3) {
+  transform: translateY(6px);
+}
+
+.menu-toggle[aria-expanded="true"] span:nth-child(1) {
+  transform: rotate(45deg);
+}
+
+.menu-toggle[aria-expanded="true"] span:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-toggle[aria-expanded="true"] span:nth-child(3) {
+  transform: rotate(-45deg);
+}
+
 .primary-nav a,
 .resume-link {
   color: var(--lightest-slate);
@@ -163,6 +211,92 @@ button {
   width: min(100%, 900px);
   margin: 0 auto;
   padding-bottom: 4vh;
+}
+
+.page-loader {
+  position: fixed;
+  z-index: 100;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: var(--dark-navy);
+  color: var(--green);
+  pointer-events: none;
+  animation: loader-dismiss 450ms ease 850ms forwards;
+}
+
+.loader-mark {
+  width: 64px;
+  overflow: visible;
+  animation: loader-arrive 800ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.loader-mark polygon {
+  fill: none;
+  stroke: currentColor;
+  stroke-dasharray: 260;
+  stroke-dashoffset: 260;
+  stroke-linejoin: round;
+  stroke-width: 4;
+  animation: loader-draw 680ms ease 80ms forwards;
+}
+
+.loader-mark path {
+  fill: currentColor;
+  opacity: 0;
+  animation: loader-letter 240ms ease 520ms forwards;
+}
+
+@keyframes loader-arrive {
+  from {
+    opacity: 0;
+    transform: scale(0.84) rotate(-8deg);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) rotate(0);
+  }
+}
+
+@keyframes loader-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes loader-letter {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes loader-dismiss {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+.hero-content > * {
+  opacity: 0;
+  animation: hero-intro 650ms cubic-bezier(0.2, 0.75, 0.25, 1) forwards;
+}
+
+.hero-content > :nth-child(1) { animation-delay: 180ms; }
+.hero-content > :nth-child(2) { animation-delay: 300ms; }
+.hero-content > :nth-child(3) { animation-delay: 420ms; }
+.hero-content > :nth-child(4) { animation-delay: 540ms; }
+.hero-content > :nth-child(5) { animation-delay: 660ms; }
+
+@keyframes hero-intro {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .eyebrow,
@@ -342,6 +476,21 @@ button {
 .content-section {
   padding: 108px 0 50px;
   scroll-margin-top: 72px;
+}
+
+.motion-enhanced .scroll-reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 650ms cubic-bezier(0.2, 0.7, 0.25, 1), transform 650ms cubic-bezier(0.2, 0.7, 0.25, 1);
+}
+
+.motion-enhanced .scroll-reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.motion-enhanced .archive-grid .project-card {
+  transition-delay: var(--reveal-delay, 0ms);
 }
 
 .section-heading {
@@ -765,53 +914,100 @@ button {
 }
 
 @media (max-width: 900px) {
-  .primary-nav a {
-    font-size: 0;
+  body.menu-open {
+    overflow: hidden;
   }
 
-  .primary-nav a span {
-    font-size: 12px;
-  }
-
-  .archive-nav a {
-    font-size: 12px;
-  }
-}
-
-@media (max-width: 700px) {
   html {
     scroll-padding-top: 72px;
   }
 
   .site-header {
+    z-index: 20;
     min-height: 66px;
     padding: 0 18px;
-  }
-
-  .brand {
-    gap: 8px;
-    font-size: 12px;
   }
 
   .brand-mark {
     width: 32px;
   }
 
-  .primary-nav {
-    gap: 12px;
+  .menu-toggle {
+    display: flex;
   }
 
-  .primary-nav a {
-    font-size: 0;
+  .primary-nav {
+    position: fixed;
+    z-index: 11;
+    top: 0;
+    right: 0;
+    display: flex;
+    width: min(82vw, 380px);
+    height: 100vh;
+    height: 100dvh;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: center;
+    gap: 8px;
+    padding: 78px 38px 38px;
+    background: var(--light-navy);
+    box-shadow: -20px 0 55px rgb(2 12 27 / 32%);
+    opacity: 0;
+    transform: translateX(105%);
+    transition: opacity 220ms ease, transform 260ms cubic-bezier(0.2, 0.75, 0.25, 1), visibility 0s linear 260ms;
+    visibility: hidden;
+  }
+
+  .primary-nav.is-open {
+    opacity: 1;
+    transform: translateX(0);
+    visibility: visible;
+    transition: opacity 220ms ease, transform 260ms cubic-bezier(0.2, 0.75, 0.25, 1), visibility 0s;
+  }
+
+  .primary-nav a,
+  .archive-nav a {
+    padding: 12px 0;
+    color: var(--lightest-slate);
+    font-size: 14px;
+    text-align: left;
   }
 
   .primary-nav a span {
     font-size: 12px;
   }
 
-  .resume-link {
-    padding: 7px 9px;
-    font-size: 11px;
+  .primary-nav .resume-link {
+    align-self: flex-start;
+    margin-top: 14px;
+    padding: 9px 14px;
+    font-size: 12px;
+  }
+
+  .menu-backdrop {
+    position: fixed;
+    z-index: 10;
+    inset: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    background: rgb(2 12 27 / 68%);
+    cursor: default;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 220ms ease;
+    visibility: hidden;
+  }
+
+  .site-header.menu-open .menu-backdrop {
+    opacity: 1;
+    pointer-events: auto;
+    visibility: visible;
+  }
+
+  .site-header.menu-open .menu-toggle {
+    border-color: var(--green);
   }
 
   .hero {
@@ -900,14 +1096,6 @@ button {
 }
 
 @media (max-width: 400px) {
-  .primary-nav {
-    gap: 8px;
-  }
-
-  .primary-nav a:nth-child(2) {
-    display: none;
-  }
-
   .skills {
     grid-template-columns: 1fr;
   }
@@ -920,6 +1108,18 @@ button {
     scroll-behavior: auto !important;
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
+    animation-delay: 0ms !important;
     transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
+  }
+
+  .page-loader {
+    animation-duration: 0.01ms;
+    animation-delay: 0ms;
+  }
+
+  .motion-enhanced .scroll-reveal {
+    opacity: 1;
+    transform: none;
   }
 }

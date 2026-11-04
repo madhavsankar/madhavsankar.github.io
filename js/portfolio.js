@@ -6,6 +6,127 @@
   var header = document.querySelector(".site-header");
   var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
+  var menuToggle = document.querySelector(".menu-toggle");
+  var primaryNav = menuToggle && document.getElementById(menuToggle.getAttribute("aria-controls"));
+  var menuBackdrop = header && header.querySelector(".menu-backdrop");
+
+  if (menuToggle && primaryNav && header) {
+    function setMenuOpen(isOpen, returnFocus) {
+      menuToggle.setAttribute("aria-expanded", String(isOpen));
+      menuToggle.setAttribute("aria-label", isOpen ? "Close navigation menu" : "Open navigation menu");
+      primaryNav.classList.toggle("is-open", isOpen);
+      header.classList.toggle("menu-open", isOpen);
+      document.body.classList.toggle("menu-open", isOpen);
+
+      if (isOpen) {
+        var firstLink = primaryNav.querySelector("a[href]");
+        if (firstLink) {
+          window.requestAnimationFrame(function () {
+            if (menuToggle.getAttribute("aria-expanded") === "true") firstLink.focus();
+          });
+        }
+      } else if (returnFocus) {
+        menuToggle.focus();
+      }
+    }
+
+    menuToggle.addEventListener("click", function () {
+      setMenuOpen(menuToggle.getAttribute("aria-expanded") !== "true", false);
+    });
+
+    if (menuBackdrop) {
+      menuBackdrop.addEventListener("click", function () {
+        setMenuOpen(false, true);
+      });
+    }
+
+    primaryNav.addEventListener("click", function (event) {
+      if (event.target.closest("a[href]") && menuToggle.getAttribute("aria-expanded") === "true") {
+        setMenuOpen(false, true);
+      }
+    });
+
+    document.addEventListener("keydown", function (event) {
+      if (menuToggle.getAttribute("aria-expanded") !== "true") return;
+      if (event.key === "Escape") {
+        event.preventDefault();
+        setMenuOpen(false, true);
+        return;
+      }
+      if (event.key !== "Tab") return;
+
+      var links = Array.from(primaryNav.querySelectorAll("a[href]"));
+      if (!links.length) return;
+      var firstLink = links[0];
+      var lastLink = links[links.length - 1];
+      if (event.shiftKey && document.activeElement === menuToggle) {
+        event.preventDefault();
+        lastLink.focus();
+      } else if (!event.shiftKey && document.activeElement === lastLink) {
+        event.preventDefault();
+        menuToggle.focus();
+      }
+    });
+
+    window.matchMedia("(max-width: 900px)").addEventListener("change", function (event) {
+      if (!event.matches && menuToggle.getAttribute("aria-expanded") === "true") {
+        setMenuOpen(false, false);
+      }
+    });
+  }
+
+  var revealItems = [];
+  var revealObserver = null;
+
+  function initializeReveals() {
+    revealItems = Array.from(document.querySelectorAll(
+      ".content-section, .archive-main > .section-kicker, .archive-main > .section-heading, .archive-intro, .archive-grid .project-card"
+    ));
+
+    if (reduceMotion.matches || !("IntersectionObserver" in window)) {
+      revealItems.forEach(function (item) {
+        item.classList.add("is-visible");
+      });
+      return;
+    }
+
+    document.body.classList.add("motion-enhanced");
+    var archiveCards = Array.from(document.querySelectorAll(".archive-grid .project-card"));
+    archiveCards.forEach(function (card, index) {
+      card.style.setProperty("--reveal-delay", Math.min(index * 45, 270) + "ms");
+    });
+
+    revealObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: "0px 0px -6% 0px" });
+
+    revealItems.forEach(function (item) {
+      item.classList.add("scroll-reveal");
+      revealObserver.observe(item);
+    });
+  }
+
+  initializeReveals();
+  reduceMotion.addEventListener("change", function () {
+    if (reduceMotion.matches) {
+      if (revealObserver) revealObserver.disconnect();
+      document.body.classList.remove("motion-enhanced");
+      revealItems.forEach(function (item) {
+        item.classList.add("is-visible");
+      });
+    } else {
+      revealItems.forEach(function (item) {
+        item.classList.remove("is-visible");
+      });
+      initializeReveals();
+    }
+  });
+
   if (canvas && hero) {
     var context = canvas.getContext("2d");
     var width = 0;
