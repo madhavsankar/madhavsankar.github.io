@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { graphql, useStaticQuery } from 'gatsby';
 import styled from 'styled-components';
+import Icon from '@components/icons/icon';
 import sr from '@utils/sr';
 import { srConfig } from '@config';
 import { usePrefersReducedMotion } from '@hooks';
@@ -10,89 +11,110 @@ const StyledProjectsGrid = styled.ul`
 `;
 
 const StyledProject = styled.li`
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  gap: 10px;
-  align-items: center;
-  margin-bottom: 100px;
+  margin-bottom: 28px;
 
   &:last-child {
     margin-bottom: 60px;
   }
 
-  &:nth-of-type(even) {
-    .project-content {
-      grid-column: 7 / -1;
-      text-align: right;
-    }
-
-    .project-visual {
-      grid-column: 1 / 8;
-    }
-
-    .project-tech-list,
-    .project-links {
-      justify-content: flex-end;
-    }
-  }
-
-  .project-content {
-    position: relative;
-    z-index: 2;
-    grid-column: 1 / 8;
-    grid-row: 1;
-  }
-
-  .project-overline {
-    margin: 10px 0;
-    color: var(--green);
-    font-family: var(--font-mono);
-    font-size: var(--fz-xs);
-    font-weight: 400;
-  }
-
-  .project-title {
-    margin: 0 0 20px;
-    color: var(--lightest-slate);
-    font-size: clamp(24px, 5vw, 30px);
-  }
-
-  .project-summary {
-    margin: 0 0 14px;
-    color: var(--light-slate);
-    font-size: var(--fz-lg);
-  }
-
-  .project-description {
-    position: relative;
-    padding: 20px 24px;
+  .project-card {
+    padding: clamp(24px, 5vw, 48px);
+    border-top: 2px solid var(--green);
     border-radius: var(--border-radius);
     background: var(--light-navy);
     box-shadow: 0 10px 30px -15px var(--navy-shadow);
+  }
+
+  .project-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 30px;
+  }
+
+  .project-icon {
+    display: flex;
+    color: var(--green);
+
+    svg {
+      width: 28px;
+      height: 28px;
+    }
+  }
+
+  .project-overline {
+    margin: 0;
+    color: var(--green);
+    font-family: var(--font-mono);
+    font-size: var(--fz-sm);
+    text-transform: uppercase;
+  }
+
+  .project-title {
+    margin: 0 0 14px;
+    color: var(--lightest-slate);
+    font-size: clamp(24px, 4vw, 30px);
+  }
+
+  .project-range {
+    margin: 0 0 12px;
+    color: var(--green);
+    font-family: var(--font-mono);
+    font-size: var(--fz-xs);
+  }
+
+  .project-summary {
+    max-width: 900px;
+    margin: 0;
+    color: var(--light-slate);
+    font-size: var(--fz-lg);
+    line-height: 1.6;
+  }
+
+  .project-details {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    align-items: stretch;
+    gap: 28px;
+    margin-top: 42px;
+  }
+
+  .project-detail {
+    padding-left: 20px;
+    border-left: 1px solid var(--lightest-navy);
+  }
+
+  .project-detail h4 {
+    margin: 0 0 14px;
+    color: var(--green);
+    font-family: var(--font-mono);
+    font-size: var(--fz-sm);
+    font-weight: 400;
+  }
+
+  .project-detail p,
+  .project-detail ul {
+    margin: 0;
     color: var(--light-slate);
     font-size: var(--fz-md);
+    line-height: 1.65;
+  }
 
-    h3 {
-      margin: 18px 0 6px;
-      color: var(--lightest-slate);
-      font-size: var(--fz-lg);
-    }
+  .project-detail ul {
+    ${({ theme }) => theme.mixins.fancyList};
+    padding-left: 20px;
+  }
 
-    h3:first-child {
-      margin-top: 0;
-    }
-
-    ul {
-      ${({ theme }) => theme.mixins.fancyList};
-    }
+  .project-detail li + li {
+    margin-top: 10px;
   }
 
   .project-tech-list {
     display: flex;
     flex-wrap: wrap;
-    gap: 4px 18px;
+    gap: 8px 18px;
     padding: 0;
-    margin: 22px 0 8px;
+    margin: 32px 0 0;
     list-style: none;
 
     li {
@@ -103,89 +125,48 @@ const StyledProject = styled.li`
   }
 
   .project-links {
-    display: flex;
-    margin: 10px 0 0 -10px;
+    margin: 20px 0 0;
 
     a {
       ${({ theme }) => theme.mixins.smallButton};
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    svg {
+      width: 16px;
+      height: 16px;
     }
   }
 
-  .project-visual {
-    ${({ theme }) => theme.mixins.boxShadow};
-    position: relative;
-    z-index: 1;
-    display: flex;
-    grid-column: 6 / -1;
-    grid-row: 1;
-    min-height: 290px;
-    align-items: center;
-    justify-content: center;
-    padding: 30px;
-    border: 1px solid var(--lightest-navy);
-    border-radius: var(--border-radius);
-    background:
-      linear-gradient(135deg, rgb(100 255 218 / 8%), transparent 58%),
-      var(--dark-navy);
-    color: var(--green);
-    font-family: var(--font-mono);
-    text-align: center;
-
-    span {
-      display: block;
-      font-size: clamp(22px, 3vw, 36px);
-      font-weight: 600;
-      letter-spacing: 0.08em;
+  @media (max-width: 900px) {
+    .project-card {
+      padding: 26px 24px;
     }
 
-    small {
-      display: block;
-      margin-top: 14px;
-      color: var(--light-slate);
-      font-size: var(--fz-xs);
-      font-weight: 400;
-      letter-spacing: 0.02em;
-    }
-  }
-
-  @media (max-width: 768px) {
-    position: relative;
-    display: block;
-    margin-bottom: 60px;
-
-    .project-content,
-    &:nth-of-type(even) .project-content {
-      grid-column: 1 / -1;
-      padding: 30px;
-      text-align: left;
+    .project-details {
+      grid-template-columns: 1fr;
+      gap: 24px;
+      margin-top: 32px;
     }
 
-    .project-visual,
-    &:nth-of-type(even) .project-visual {
-      position: absolute;
-      inset: 0;
-      min-height: 0;
-      opacity: 0.2;
-    }
-
-    .project-description {
-      padding: 20px 0;
-      background: transparent;
-      box-shadow: none;
-    }
-
-    .project-tech-list,
-    .project-links,
-    &:nth-of-type(even) .project-tech-list,
-    &:nth-of-type(even) .project-links {
-      justify-content: flex-start;
+    .project-tech-list {
+      margin-top: 26px;
     }
   }
 
   @media (max-width: 480px) {
-    .project-content,
-    &:nth-of-type(even) .project-content {
+    .project-card {
       padding: 24px 20px;
+    }
+
+    .project-header {
+      margin-bottom: 24px;
+    }
+
+    .project-summary {
+      font-size: var(--fz-md);
     }
   }
 `;
@@ -205,8 +186,12 @@ const Featured = () => {
             tech
             external
             ctaLabel
+            details {
+              title
+              text
+              bullets
+            }
           }
-          html
         }
       }
     }
@@ -229,13 +214,37 @@ const Featured = () => {
         Selected Work
       </h2>
       <StyledProjectsGrid>
-        {featured.nodes.map(({ frontmatter, html }, index) => (
-          <StyledProject key={frontmatter.title} ref={element => (revealProjects.current[index] = element)}>
-            <div className="project-content">
-              <p className="project-overline">Featured Project · {frontmatter.range}</p>
+        {featured.nodes.map(({ frontmatter }, index) => (
+          <StyledProject
+            key={frontmatter.title}
+            ref={element => (revealProjects.current[index] = element)}>
+            <article className="project-card">
+              <header className="project-header">
+                <span className="project-icon" aria-hidden="true">
+                  <Icon name="Folder" />
+                </span>
+                <p className="project-overline">Featured · {String(index + 1).padStart(2, '0')}</p>
+              </header>
               <h3 className="project-title">{frontmatter.title}</h3>
+              <p className="project-range">{frontmatter.range}</p>
               <p className="project-summary">{frontmatter.summary}</p>
-              <div className="project-description" dangerouslySetInnerHTML={{ __html: html }} />
+
+              <div className="project-details">
+                {frontmatter.details.map(detail => (
+                  <div className="project-detail" key={detail.title}>
+                    <h4>{detail.title}</h4>
+                    {detail.text && <p>{detail.text}</p>}
+                    {detail.bullets?.length > 0 && (
+                      <ul>
+                        {detail.bullets.map(bullet => (
+                          <li key={bullet}>{bullet}</li>
+                        ))}
+                      </ul>
+                    )}
+                  </div>
+                ))}
+              </div>
+
               {frontmatter.tech?.length > 0 && (
                 <ul className="project-tech-list" aria-label="Technologies and focus areas">
                   {frontmatter.tech.map(item => (
@@ -250,16 +259,11 @@ const Featured = () => {
                     target="_blank"
                     rel="noopener noreferrer">
                     {frontmatter.ctaLabel || 'Learn more'}
+                    <Icon name="External" />
                   </a>
                 </div>
               )}
-            </div>
-            <div className="project-visual" aria-hidden="true">
-              <div>
-                <span>{String(index + 1).padStart(2, '0')}</span>
-                <small>{frontmatter.title}</small>
-              </div>
-            </div>
+            </article>
           </StyledProject>
         ))}
       </StyledProjectsGrid>

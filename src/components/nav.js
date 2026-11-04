@@ -17,11 +17,13 @@ const StyledHeader = styled.header`
   padding: 0px 50px;
   width: 100%;
   height: var(--nav-height);
-  background-color: rgba(10, 25, 47, 0.85);
+  background-color: ${({ $isHome, scrolledToTop }) =>
+    $isHome && scrolledToTop ? 'transparent' : 'rgba(10, 25, 47, 0.85)'};
   filter: none !important;
   pointer-events: auto !important;
   user-select: auto !important;
-  backdrop-filter: blur(10px);
+  backdrop-filter: ${({ $isHome, scrolledToTop }) =>
+    $isHome && scrolledToTop ? 'none' : 'blur(10px)'};
   transition: var(--transition);
 
   @media (max-width: 1080px) {
@@ -212,7 +214,7 @@ const Nav = ({ isHome }) => {
   );
 
   return (
-    <StyledHeader scrollDirection={scrollDirection} scrolledToTop={scrolledToTop}>
+    <StyledHeader $isHome={isHome} scrollDirection={scrollDirection} scrolledToTop={scrolledToTop}>
       <StyledNav>
         {prefersReducedMotion ? (
           <>

@@ -157,6 +157,7 @@ const Jobs = () => {
             company
             location
             range
+            showCompanyRange
             url
           }
           html
@@ -239,9 +240,11 @@ const Jobs = () => {
                     frontmatter.company
                   )}
                 </h3>
-                <p className="range">
-                  {frontmatter.location} · {frontmatter.range}
-                </p>
+                {frontmatter.showCompanyRange !== false && (
+                  <p className="range">
+                    {frontmatter.location} · {frontmatter.range}
+                  </p>
+                )}
                 <div
                   className="experience-content"
                   dangerouslySetInnerHTML={{ __html: html }}

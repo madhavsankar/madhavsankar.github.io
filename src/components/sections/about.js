@@ -10,7 +10,7 @@ const StyledAboutSection = styled.section`
 
   .inner {
     display: grid;
-    grid-template-columns: 3fr 2fr;
+    grid-template-columns: minmax(0, 1fr) 177px;
     grid-gap: 50px;
 
     @media (max-width: 768px) {
@@ -20,6 +20,14 @@ const StyledAboutSection = styled.section`
 `;
 
 const StyledText = styled.div`
+  p {
+    color: var(--slate);
+    font-family: var(--font-sans);
+    font-size: var(--fz-lg);
+    font-weight: 400;
+    line-height: 1.55;
+  }
+
   ul.skills-list {
     display: grid;
     grid-template-columns: repeat(2, minmax(140px, 200px));
@@ -50,11 +58,11 @@ const StyledText = styled.div`
 
 const StyledPic = styled.div`
   position: relative;
-  max-width: 300px;
+  width: 177px;
+  max-width: 100%;
 
   @media (max-width: 768px) {
     margin: 50px auto 0;
-    width: 70%;
   }
 
   .wrapper {
@@ -83,8 +91,8 @@ const StyledPic = styled.div`
     .img {
       position: relative;
       border-radius: var(--border-radius);
-      mix-blend-mode: multiply;
-      filter: grayscale(100%) contrast(1);
+      mix-blend-mode: normal;
+      filter: none;
       transition: var(--transition);
     }
 
@@ -100,10 +108,7 @@ const StyledPic = styled.div`
     }
 
     &:before {
-      top: 0;
-      left: 0;
-      background-color: var(--navy);
-      mix-blend-mode: screen;
+      display: none;
     }
 
     &:after {
@@ -115,7 +120,13 @@ const StyledPic = styled.div`
   }
 `;
 
-const skills = ['Java', 'Kotlin', 'C#', 'Python', 'TypeScript', 'SQL'];
+const skills = [
+  'Distributed Systems',
+  'API Development',
+  'Agentic AI Development',
+  'Model Context Protocol (MCP)',
+  'Scalable Architecture',
+];
 
 const About = () => {
   const revealContainer = useRef(null);
@@ -135,7 +146,7 @@ const About = () => {
           <div>
             <p>
               I’m a Senior Software Engineer at Google with 6+ years of experience building
-              large-scale backend systems at Google and Microsoft. I work on the platform behind
+              large-scale backend systems at Google and Microsoft. I work on the platform behind{' '}
               the{' '}
               <a
                 href="https://developers.google.com/google-ads/api"
@@ -145,13 +156,13 @@ const About = () => {
               </a>
               .
             </p>
+            <p>My work spans distributed systems and agentic AI development.</p>
             <p>
-              My work spans distributed systems and agentic AI development. Before Google, I worked
-              on Microsoft 365 Security and Compliance. I earned a master’s in Computer Science from
-              UCLA and a bachelor’s in Computer Science from NIT Tiruchirappalli, and have published
-              research in distributed algorithms and natural language processing.
+              Before Google, I worked on Microsoft 365 Security and Compliance. I earned a master’s
+              in Computer Science from UCLA and a bachelor’s in Computer Science from NIT Trichy,
+              and have published research in distributed algorithms and natural language processing.
             </p>
-            <p>Here are a few technologies I’ve worked with:</p>
+            <p>Areas of focus:</p>
           </div>
           <ul className="skills-list">
             {skills.map(skill => (
@@ -164,8 +175,9 @@ const About = () => {
             <StaticImage
               className="img"
               src="../../images/madhavsankar.png"
-              width={500}
-              quality={90}
+              width={177}
+              height={172}
+              quality={100}
               formats={['AUTO', 'WEBP', 'AVIF']}
               alt="Portrait of Madhav Sankar"
             />

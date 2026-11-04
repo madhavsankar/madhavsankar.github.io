@@ -14,7 +14,9 @@ const StyledHeroSection = styled.section`
   align-items: flex-start;
   min-height: 100vh;
   height: 100vh;
+  width: 100vw;
   max-width: none;
+  margin-left: calc(50% - 50vw);
   padding: 0 max(25px, calc((100vw - 1000px) / 2));
   overflow: hidden;
   background: var(--dark-navy);
@@ -29,7 +31,9 @@ const StyledHeroSection = styled.section`
   }
 
   .hero-vignette {
-    background: radial-gradient(ellipse at center, transparent 10%, rgb(2 12 27 / 62%) 100%);
+    background:
+      linear-gradient(to bottom, transparent 55%, var(--navy) 100%),
+      radial-gradient(ellipse at center, transparent 10%, rgb(2 12 27 / 62%) 100%);
     pointer-events: none;
   }
 
@@ -40,7 +44,7 @@ const StyledHeroSection = styled.section`
     margin-top: 40px;
   }
 
-  h1 {
+  .intro {
     margin: 0 0 30px 4px;
     color: var(--green);
     font-family: var(--font-mono);
@@ -52,10 +56,20 @@ const StyledHeroSection = styled.section`
     }
   }
 
-  h3 {
-    margin-top: 5px;
+  h1.big-heading {
+    max-width: 950px;
+    font-size: clamp(2.25rem, 5.8vw, 4.5rem);
+    line-height: 1.02;
+    letter-spacing: -0.035em;
+  }
+
+  h2.big-heading {
+    max-width: 900px;
+    margin-top: 8px;
     color: var(--slate);
-    line-height: 0.95;
+    font-size: clamp(1.75rem, 4.2vw, 3.25rem);
+    line-height: 1.08;
+    letter-spacing: -0.025em;
   }
 
   p {
@@ -102,6 +116,10 @@ const StyledHeroSection = styled.section`
     }
   }
 
+  @media (min-width: 769px) and (max-width: 1080px) {
+    padding-left: 100px;
+  }
+
   @media (max-height: 700px) and (min-width: 700px), (max-width: 360px) {
     height: auto;
     min-height: 100vh;
@@ -121,16 +139,18 @@ const Hero = () => {
   }, [prefersReducedMotion]);
 
   const items = [
-    <h1 key="intro">Hi, my name is</h1>,
-    <h2 className="big-heading" key="name">
+    <p className="intro" key="intro">
+      Hi, my name is
+    </p>,
+    <h1 className="big-heading" key="name">
       Madhav Sankar Krishnakumar.
+    </h1>,
+    <h2 className="big-heading" key="role">
+      Senior Software Engineer at Google.
     </h2>,
-    <h3 className="big-heading" key="role">
-      I build large-scale APIs and agentic systems.
-    </h3>,
     <p key="copy">
-      I’m a Senior Software Engineer at Google, working on the platform behind Google Ads API.
-      Previously, I worked on Microsoft 365 security and compliance.
+      I build large-scale backend systems, resilient APIs, and AI-agent tooling. Currently working
+      on the platform behind Google Ads API.
     </p>,
     <div className="hero-actions" key="actions">
       <Link className="hero-button" to="/#projects">

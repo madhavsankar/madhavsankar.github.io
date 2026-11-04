@@ -2,6 +2,7 @@
 company: Research
 location: UCLA · IIT Hyderabad · NIT Tiruchirappalli · IIT Madras
 range: May 2017 – February 2023
+showCompanyRange: false
 sortOrder: 3
 ---
 
