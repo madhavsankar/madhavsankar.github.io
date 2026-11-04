@@ -1,0 +1,41 @@
+{
+  "name": "madhav-sankar-portfolio",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Madhav Sankar's portfolio, built with Gatsby and React.",
+  "license": "MIT",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "gatsby build",
+    "develop": "gatsby develop",
+    "start": "gatsby develop",
+    "serve": "gatsby serve",
+    "clean": "gatsby clean",
+    "format": "prettier --write \"src/**/*.{js,jsx,md}\" \"content/**/*.md\""
+  },
+  "dependencies": {
+    "animejs": "^3.2.2",
+    "gatsby": "^5.14.6",
+    "gatsby-plugin-image": "^3.14.0",
+    "gatsby-plugin-react-helmet": "^6.14.0",
+    "gatsby-plugin-sharp": "^5.14.0",
+    "gatsby-plugin-sitemap": "^6.14.0",
+    "gatsby-plugin-styled-components": "^6.14.0",
+    "gatsby-remark-external-links": "^0.0.4",
+    "gatsby-source-filesystem": "^5.14.0",
+    "gatsby-transformer-remark": "^6.14.0",
+    "gatsby-transformer-sharp": "^5.14.0",
+    "prop-types": "^15.8.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-helmet": "^6.1.0",
+    "react-transition-group": "^4.4.5",
+    "scrollreveal": "^4.0.9",
+    "styled-components": "^5.3.11"
+  },
+  "devDependencies": {
+    "prettier": "^3.3.3"
+  }
+}
