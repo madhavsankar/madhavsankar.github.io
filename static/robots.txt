@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://madhavsankar.github.io/sitemap-index.xml
