@@ -176,18 +176,6 @@
     window.addEventListener("resize", updateTabOrientation);
   }
 
-  document.querySelectorAll(".filter-button").forEach(function (button) {
-    button.addEventListener("click", function () {
-      var category = button.dataset.category;
-      document.querySelectorAll(".filter-button").forEach(function (filter) {
-        filter.setAttribute("aria-pressed", String(filter === button));
-      });
-      document.querySelectorAll(".project-card").forEach(function (card) {
-        card.hidden = category !== "all" && !card.dataset.categories.split(" ").includes(category);
-      });
-    });
-  });
-
   if (header) {
     function updateHeader() {
       header.classList.toggle("is-scrolled", window.scrollY > 24);
