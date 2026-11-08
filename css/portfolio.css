@@ -53,7 +53,6 @@ a:focus-visible {
 .about-copy a,
 .experience-panel a,
 .credential-card a,
-.site-footer a,
 .archive-back-link a {
   position: relative;
   display: inline-block;
@@ -62,7 +61,6 @@ a:focus-visible {
 .about-copy a::after,
 .experience-panel a::after,
 .credential-card a::after,
-.site-footer a::after,
 .archive-back-link a::after {
   display: block;
   width: 0;
@@ -81,8 +79,6 @@ a:focus-visible {
 .experience-panel a:focus-visible::after,
 .credential-card a:hover::after,
 .credential-card a:focus-visible::after,
-.site-footer a:hover::after,
-.site-footer a:focus-visible::after,
 .archive-back-link a:hover::after,
 .archive-back-link a:focus-visible::after {
   width: 100%;
@@ -1176,6 +1172,19 @@ body.loader-skipped .scroll-cue { animation-delay: 760ms; }
 
 .site-footer p {
   margin: 5px 0;
+}
+
+.footer-github-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: var(--slate);
+  transition: color 220ms var(--easing);
+}
+
+.footer-github-link:hover,
+.footer-github-link:focus-visible {
+  color: var(--green);
 }
 
 @media (min-width: 1200px) {
