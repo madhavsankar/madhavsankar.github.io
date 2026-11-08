@@ -6,6 +6,18 @@
   var header = document.querySelector(".site-header");
   var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
+  try {
+    if (window.location.hash || window.sessionStorage.getItem("portfolio-loader-seen") === "1") {
+      document.body.classList.add("loader-skipped");
+    } else {
+      window.sessionStorage.setItem("portfolio-loader-seen", "1");
+    }
+  } catch (e) {
+    if (window.location.hash) {
+      document.body.classList.add("loader-skipped");
+    }
+  }
+
   var menuToggle = document.querySelector(".menu-toggle");
   var primaryNav = menuToggle && document.getElementById(menuToggle.getAttribute("aria-controls"));
   var menuBackdrop = header && header.querySelector(".menu-backdrop");
@@ -247,6 +259,18 @@
     });
   }
 
+  var experienceTabList = document.querySelector('[role="tablist"]');
+
+  function updateTabHighlight(activeTab) {
+    if (!experienceTabList) return;
+    var tab = activeTab || experienceTabList.querySelector('.experience-tab[aria-selected="true"]');
+    if (!tab) return;
+    experienceTabList.style.setProperty("--tab-offset-y", tab.offsetTop + "px");
+    experienceTabList.style.setProperty("--tab-height", tab.offsetHeight + "px");
+    experienceTabList.style.setProperty("--tab-offset-x", tab.offsetLeft + "px");
+    experienceTabList.style.setProperty("--tab-width", tab.offsetWidth + "px");
+  }
+
   function setActiveTab(tab) {
     var tabs = Array.from(document.querySelectorAll(".experience-tab"));
     var panels = Array.from(document.querySelectorAll(".experience-panel"));
@@ -258,6 +282,7 @@
     panels.forEach(function (panel) {
       panel.hidden = panel.id !== tab.getAttribute("aria-controls");
     });
+    updateTabHighlight(tab);
   }
 
   document.querySelectorAll(".experience-tab").forEach(function (tab) {
@@ -285,25 +310,75 @@
     });
   });
 
-  var experienceTabList = document.querySelector('[role="tablist"]');
   if (experienceTabList) {
     function updateTabOrientation() {
       experienceTabList.setAttribute(
         "aria-orientation",
-        window.matchMedia("(max-width: 700px)").matches ? "horizontal" : "vertical"
+        window.matchMedia("(max-width: 900px)").matches ? "horizontal" : "vertical"
       );
+      updateTabHighlight();
     }
     updateTabOrientation();
     window.addEventListener("resize", updateTabOrientation);
   }
 
   if (header) {
+    var lastScrollY = window.scrollY;
     function updateHeader() {
-      header.classList.toggle("is-scrolled", window.scrollY > 24);
+      var currentScrollY = window.scrollY;
+      var scrolled = currentScrollY > 24;
+      header.classList.toggle("is-scrolled", scrolled);
+
+      if (currentScrollY <= 70 || header.classList.contains("menu-open")) {
+        header.classList.remove("is-hidden");
+      } else if (currentScrollY > lastScrollY + 6) {
+        header.classList.add("is-hidden");
+      } else if (currentScrollY < lastScrollY - 6) {
+        header.classList.remove("is-hidden");
+      }
+      lastScrollY = currentScrollY;
     }
     updateHeader();
     window.addEventListener("scroll", updateHeader, { passive: true });
   }
+
+  var navSectionLinks = Array.from(document.querySelectorAll('.primary-nav a[href^="#"]'));
+  if (navSectionLinks.length && "IntersectionObserver" in window) {
+    var sectionMap = new Map();
+    navSectionLinks.forEach(function (link) {
+      var id = link.getAttribute("href").slice(1);
+      var section = id && document.getElementById(id);
+      if (section) sectionMap.set(section, link);
+    });
+
+    var spyObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        var link = sectionMap.get(entry.target);
+        if (link && entry.isIntersecting) {
+          navSectionLinks.forEach(function (item) {
+            item.classList.toggle("is-active", item === link);
+          });
+        }
+      });
+    }, { rootMargin: "-30% 0px -55% 0px", threshold: 0 });
+
+    sectionMap.forEach(function (_, section) {
+      spyObserver.observe(section);
+    });
+  }
+
+  document.querySelectorAll(".project-card").forEach(function (card) {
+    var links = card.querySelectorAll("a[href]");
+    if (links.length !== 1) return;
+    var primaryLink = links[0];
+    card.classList.add("has-primary-link");
+    card.addEventListener("click", function (event) {
+      if (event.target.closest("a, button")) return;
+      var selection = window.getSelection && window.getSelection();
+      if (selection && selection.toString().length > 0) return;
+      primaryLink.click();
+    });
+  });
 
   var copyButton = document.querySelector("[data-copy-email]");
   var copyStatus = document.getElementById("copy-status");

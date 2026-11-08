@@ -9,8 +9,15 @@
   --lightest-slate: #ccd6f6;
   --white: #e6f1ff;
   --green: #64ffda;
+  --green-tint: rgb(100 255 218 / 10%);
+  --easing: cubic-bezier(0.645, 0.045, 0.355, 1);
   --mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
   --sans: Inter, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+}
+
+::selection {
+  background-color: var(--lightest-navy);
+  color: var(--lightest-slate);
 }
 
 * {
@@ -35,11 +42,50 @@ body {
 a {
   color: var(--green);
   text-decoration: none;
+  transition: color 220ms var(--easing);
 }
 
 a:hover,
 a:focus-visible {
-  color: var(--white);
+  color: var(--green);
+}
+
+.about-copy a,
+.experience-panel a,
+.credential-card a,
+.site-footer a,
+.archive-back-link a {
+  position: relative;
+  display: inline-block;
+}
+
+.about-copy a::after,
+.experience-panel a::after,
+.credential-card a::after,
+.site-footer a::after,
+.archive-back-link a::after {
+  display: block;
+  width: 0;
+  height: 1px;
+  position: relative;
+  bottom: 0.15em;
+  background-color: var(--green);
+  opacity: 0.7;
+  transition: width 220ms var(--easing);
+  content: "";
+}
+
+.about-copy a:hover::after,
+.about-copy a:focus-visible::after,
+.experience-panel a:hover::after,
+.experience-panel a:focus-visible::after,
+.credential-card a:hover::after,
+.credential-card a:focus-visible::after,
+.site-footer a:hover::after,
+.site-footer a:focus-visible::after,
+.archive-back-link a:hover::after,
+.archive-back-link a:focus-visible::after {
+  width: 100%;
 }
 
 button {
@@ -73,19 +119,30 @@ button {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  min-height: 76px;
-  padding: 0 clamp(22px, 6vw, 88px);
-  transition: background-color 180ms ease, box-shadow 180ms ease;
+  min-height: 84px;
+  padding: 0 clamp(22px, 6vw, 50px);
+  transition:
+    background-color 250ms var(--easing),
+    box-shadow 250ms var(--easing),
+    min-height 250ms var(--easing),
+    transform 250ms var(--easing);
 }
 
 .site-header.is-scrolled {
-  background: rgb(10 25 47 / 88%);
-  box-shadow: 0 10px 30px -15px rgb(2 12 27 / 70%);
-  -webkit-backdrop-filter: blur(12px);
-  backdrop-filter: blur(12px);
+  min-height: 70px;
+  background: rgb(10 25 47 / 85%);
+  box-shadow: 0 10px 30px -10px rgb(2 12 27 / 70%);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+
+.site-header.is-hidden:not(.menu-open) {
+  transform: translateY(-100%);
+  box-shadow: none;
 }
 
 .brand {
+  position: relative;
   display: inline-flex;
   align-items: center;
   gap: 12px;
@@ -95,11 +152,28 @@ button {
   font-size: 14px;
   letter-spacing: 0.04em;
   white-space: nowrap;
+  transition: transform 220ms var(--easing);
+}
+
+.brand:hover,
+.brand:focus-visible {
+  transform: translate(-3px, -3px);
 }
 
 .brand-mark {
-  width: 38px;
-  height: 42px;
+  width: 40px;
+  height: 44px;
+  transition: filter 220ms var(--easing), fill 220ms var(--easing);
+}
+
+.brand:hover .brand-mark,
+.brand:focus-visible .brand-mark {
+  filter: drop-shadow(3px 3px 0 var(--green));
+}
+
+.brand:hover .brand-mark polygon,
+.brand:focus-visible .brand-mark polygon {
+  fill: var(--green-tint);
 }
 
 .primary-nav {
@@ -161,6 +235,18 @@ button {
   color: var(--lightest-slate);
   font-family: var(--mono);
   font-size: 12px;
+  transition:
+    color 220ms var(--easing),
+    background-color 220ms var(--easing),
+    border-color 220ms var(--easing),
+    box-shadow 220ms var(--easing),
+    transform 220ms var(--easing);
+}
+
+.primary-nav a:hover,
+.primary-nav a:focus-visible,
+.primary-nav a.is-active {
+  color: var(--green);
 }
 
 .primary-nav a span {
@@ -169,10 +255,17 @@ button {
 }
 
 .resume-link {
-  padding: 8px 13px;
+  padding: 9px 15px;
   border: 1px solid var(--green);
   border-radius: 4px;
   color: var(--green);
+}
+
+.resume-link:hover,
+.resume-link:focus-visible {
+  background: var(--green-tint);
+  box-shadow: 3px 3px 0 0 var(--green);
+  transform: translate(-3px, -3px);
 }
 
 .hero {
@@ -279,19 +372,91 @@ button {
 
 .hero-content > * {
   opacity: 0;
-  animation: hero-intro 650ms cubic-bezier(0.2, 0.75, 0.25, 1) forwards;
+  animation: hero-intro 650ms var(--easing) forwards;
 }
 
-.hero-content > :nth-child(1) { animation-delay: 180ms; }
-.hero-content > :nth-child(2) { animation-delay: 300ms; }
-.hero-content > :nth-child(3) { animation-delay: 420ms; }
-.hero-content > :nth-child(4) { animation-delay: 540ms; }
-.hero-content > :nth-child(5) { animation-delay: 660ms; }
+.hero-content > :nth-child(1) { animation-delay: 950ms; }
+.hero-content > :nth-child(2) { animation-delay: 1050ms; }
+.hero-content > :nth-child(3) { animation-delay: 1150ms; }
+.hero-content > :nth-child(4) { animation-delay: 1250ms; }
+.hero-content > :nth-child(5) { animation-delay: 1350ms; }
+
+@media (min-width: 901px) {
+  .site-header .brand {
+    opacity: 0;
+    animation: fade-in 500ms var(--easing) 700ms forwards;
+  }
+
+  .primary-nav > a {
+    opacity: 0;
+    animation: nav-intro 450ms var(--easing) forwards;
+  }
+
+  .primary-nav > a:nth-child(1) { animation-delay: 720ms; }
+  .primary-nav > a:nth-child(2) { animation-delay: 800ms; }
+  .primary-nav > a:nth-child(3) { animation-delay: 880ms; }
+  .primary-nav > a:nth-child(4) { animation-delay: 960ms; }
+  .primary-nav > a:nth-child(5) { animation-delay: 1040ms; }
+  .primary-nav > a:nth-child(6) { animation-delay: 1120ms; }
+
+  .side-rail {
+    opacity: 0;
+    animation: fade-in 600ms var(--easing) 1450ms forwards;
+  }
+}
+
+.scroll-cue {
+  opacity: 0;
+  animation: fade-in 600ms var(--easing) 1500ms forwards;
+}
+
+body.loader-skipped .page-loader {
+  display: none;
+}
+
+body.loader-skipped .site-header .brand {
+  animation-delay: 50ms;
+}
+
+body.loader-skipped .primary-nav > a:nth-child(1) { animation-delay: 80ms; }
+body.loader-skipped .primary-nav > a:nth-child(2) { animation-delay: 140ms; }
+body.loader-skipped .primary-nav > a:nth-child(3) { animation-delay: 200ms; }
+body.loader-skipped .primary-nav > a:nth-child(4) { animation-delay: 260ms; }
+body.loader-skipped .primary-nav > a:nth-child(5) { animation-delay: 320ms; }
+body.loader-skipped .primary-nav > a:nth-child(6) { animation-delay: 380ms; }
+
+body.loader-skipped .hero-content > :nth-child(1) { animation-delay: 220ms; }
+body.loader-skipped .hero-content > :nth-child(2) { animation-delay: 320ms; }
+body.loader-skipped .hero-content > :nth-child(3) { animation-delay: 420ms; }
+body.loader-skipped .hero-content > :nth-child(4) { animation-delay: 520ms; }
+body.loader-skipped .hero-content > :nth-child(5) { animation-delay: 620ms; }
+body.loader-skipped .side-rail { animation-delay: 720ms; }
+body.loader-skipped .scroll-cue { animation-delay: 760ms; }
+
+@keyframes nav-intro {
+  from {
+    opacity: 0;
+    transform: translateY(-14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
 
 @keyframes hero-intro {
   from {
     opacity: 0;
-    transform: translateY(14px);
+    transform: translateY(18px);
   }
   to {
     opacity: 1;
@@ -351,24 +516,40 @@ button {
   min-height: 48px;
   align-items: center;
   justify-content: center;
-  padding: 10px 17px;
+  padding: 10px 20px;
   border: 1px solid var(--green);
   border-radius: 4px;
+  background: transparent;
   color: var(--green);
+  cursor: pointer;
   font-family: var(--mono);
   font-size: 13px;
-  transition: background-color 160ms ease, color 160ms ease, transform 160ms ease;
+  transition:
+    background-color 220ms var(--easing),
+    border-color 220ms var(--easing),
+    box-shadow 220ms var(--easing),
+    color 220ms var(--easing),
+    transform 220ms var(--easing);
 }
 
-.button:hover {
-  transform: translateY(-2px);
-  background: rgb(100 255 218 / 10%);
+.button:hover,
+.button:focus-visible {
+  transform: translate(-4px, -4px);
+  background: var(--green-tint);
+  box-shadow: 4px 4px 0 0 var(--green);
   color: var(--green);
+  outline: none;
 }
 
 .button-secondary {
   border-color: var(--lightest-navy);
   color: var(--lightest-slate);
+}
+
+.button-secondary:hover,
+.button-secondary:focus-visible {
+  border-color: var(--green);
+  color: var(--green);
 }
 
 .scroll-cue {
@@ -566,32 +747,68 @@ button {
 }
 
 .experience-tabs {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  border-left: 1px solid var(--lightest-navy);
+  align-self: start;
+  border-left: 2px solid var(--lightest-navy);
 }
 
 .experience-tab {
-  padding: 12px 16px;
+  height: 42px;
+  padding: 0 20px;
   border: 0;
   background: transparent;
   color: var(--slate);
   cursor: pointer;
   font-family: var(--mono);
-  font-size: 12px;
+  font-size: 13px;
   text-align: left;
+  white-space: nowrap;
+  transition: background-color 220ms var(--easing), color 220ms var(--easing);
+}
+
+.experience-tab:hover,
+.experience-tab:focus-visible {
+  background: var(--light-navy);
+  color: var(--green);
 }
 
 .experience-tab[aria-selected="true"] {
-  border-left: 2px solid var(--green);
   background: var(--light-navy);
   color: var(--green);
+}
+
+.tab-highlight {
+  position: absolute;
+  top: 0;
+  left: -2px;
+  z-index: 2;
+  width: 2px;
+  height: var(--tab-height, 42px);
+  border-radius: 2px;
+  background: var(--green);
+  transform: translateY(var(--tab-offset-y, 0px));
+  transition: transform 250ms var(--easing), width 250ms var(--easing), height 250ms var(--easing);
+  pointer-events: none;
 }
 
 .experience-panel {
   min-width: 0;
   padding: 2px 0;
+  animation: panel-fade 320ms var(--easing);
+}
+
+@keyframes panel-fade {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .experience-panel[hidden] {
@@ -658,13 +875,18 @@ button {
 }
 
 .project-card {
+  position: relative;
   display: flex;
   min-height: 232px;
   flex-direction: column;
-  padding: 24px;
+  padding: 28px 24px;
   border-radius: 4px;
   background: var(--light-navy);
-  transition: transform 160ms ease, background-color 160ms ease;
+  box-shadow: 0 10px 30px -15px rgb(2 12 27 / 70%);
+  transition:
+    transform 250ms var(--easing),
+    background-color 250ms var(--easing),
+    box-shadow 250ms var(--easing);
 }
 
 .project-card.featured-project {
@@ -709,9 +931,11 @@ button {
   margin-bottom: 7px;
 }
 
-.project-card:hover {
-  transform: translateY(-4px);
+.project-card:hover,
+.project-card:focus-within {
+  transform: translateY(-7px);
   background: #162d50;
+  box-shadow: 0 20px 30px -15px rgb(2 12 27 / 80%);
 }
 
 .project-topline {
@@ -724,13 +948,28 @@ button {
 .project-icon {
   font-family: var(--mono);
   font-size: 25px;
+  transition: transform 220ms var(--easing);
 }
 
-.project-card h3 {
+.project-card:hover .project-icon,
+.project-card:focus-within .project-icon {
+  transform: translateY(-2px);
+}
+
+.project-card h3,
+.archive-grid .project-card h2 {
   margin: 15px 0 8px;
-  color: var(--white);
-  font-size: 18px;
+  color: var(--lightest-slate);
+  font-size: 19px;
   line-height: 1.35;
+  transition: color 220ms var(--easing);
+}
+
+.project-card:hover h3,
+.project-card:focus-within h3,
+.archive-grid .project-card:hover h2,
+.archive-grid .project-card:focus-within h2 {
+  color: var(--green);
 }
 
 .project-card p {
@@ -741,21 +980,47 @@ button {
 .project-card .tag-list {
   display: flex;
   flex-wrap: wrap;
-  gap: 6px 12px;
+  gap: 6px 14px;
   margin-top: auto;
-  padding-top: 18px;
+  padding-top: 20px;
 }
 
 .tag {
-  color: var(--light-slate);
-  font-size: 10px;
+  color: var(--slate);
+  font-size: 11px;
 }
 
 .project-card a {
-  display: inline-block;
-  margin-top: 12px;
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  align-self: flex-start;
+  margin-top: 14px;
   font-family: var(--mono);
   font-size: 12px;
+}
+
+.project-card a::after {
+  display: block;
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background-color: var(--green);
+  transition: width 220ms var(--easing);
+  content: "";
+}
+
+.project-card a:hover::after,
+.project-card a:focus-visible::after {
+  width: 100%;
+}
+
+.project-card.has-primary-link {
+  cursor: pointer;
 }
 
 .archive-link-row {
@@ -1048,18 +1313,23 @@ button {
   .experience-tabs {
     flex-direction: row;
     overflow-x: auto;
-    border-bottom: 1px solid var(--lightest-navy);
+    border-bottom: 2px solid var(--lightest-navy);
     border-left: 0;
   }
 
   .experience-tab {
     flex: 0 0 auto;
-    padding: 11px 12px;
+    height: 42px;
+    padding: 0 16px;
   }
 
-  .experience-tab[aria-selected="true"] {
-    border-bottom: 2px solid var(--green);
-    border-left: 0;
+  .tab-highlight {
+    top: auto;
+    bottom: 0;
+    left: 0;
+    width: var(--tab-width, 90px);
+    height: 2px;
+    transform: translateX(var(--tab-offset-x, 0px));
   }
 
   .project-grid,
