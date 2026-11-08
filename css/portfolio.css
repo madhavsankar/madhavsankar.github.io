@@ -953,13 +953,10 @@ body.loader-skipped .scroll-cue { animation-delay: 760ms; }
 }
 
 .project-icon svg {
-  width: 26px;
-  height: 26px;
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 1.75;
-  stroke-linecap: round;
-  stroke-linejoin: round;
+  width: 22px;
+  height: 22px;
+  fill: currentColor;
+  stroke: none;
 }
 
 .project-card:hover .project-icon,
