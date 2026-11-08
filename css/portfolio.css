@@ -991,33 +991,45 @@ body.loader-skipped .scroll-cue { animation-delay: 760ms; }
   font-size: 11px;
 }
 
-.project-card a {
+.project-links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.project-link {
   position: relative;
   z-index: 1;
   display: inline-flex;
   align-items: center;
-  gap: 4px;
-  align-self: flex-start;
-  margin-top: 14px;
+  gap: 7px;
+  color: var(--light-slate);
   font-family: var(--mono);
   font-size: 12px;
+  transition: color 220ms var(--easing), transform 220ms var(--easing);
 }
 
-.project-card a::after {
-  display: block;
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  width: 0;
-  height: 1px;
-  background-color: var(--green);
-  transition: width 220ms var(--easing);
-  content: "";
+.project-link svg {
+  width: 17px;
+  height: 17px;
+  fill: currentColor;
+  flex-shrink: 0;
 }
 
-.project-card a:hover::after,
-.project-card a:focus-visible::after {
-  width: 100%;
+.project-link svg.stroke-icon {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.project-link:hover,
+.project-link:focus-visible {
+  color: var(--green);
+  transform: translateY(-2px);
 }
 
 .project-card.has-primary-link {
