@@ -84,7 +84,7 @@
 
   const initializeReveals = () => {
     revealItems = Array.from(document.querySelectorAll(
-      ".content-section, .archive-main > .section-kicker, .archive-main > .section-heading, .archive-intro, .archive-grid .project-card"
+      ".content-section, .project-grid .project-card, .credentials-grid .credential-card, .archive-main > .section-kicker, .archive-main > .section-heading, .archive-intro, .archive-grid .project-card"
     ));
 
     if (reduceMotion.matches || !("IntersectionObserver" in window)) {
@@ -98,6 +98,16 @@
     const archiveCards = Array.from(document.querySelectorAll(".archive-grid .project-card"));
     archiveCards.forEach((card, index) => {
       card.style.setProperty("--reveal-delay", `${Math.min(index * 45, 270)}ms`);
+    });
+
+    const projectCards = Array.from(document.querySelectorAll(".project-grid .project-card:not(.featured-project)"));
+    projectCards.forEach((card, index) => {
+      card.style.setProperty("--reveal-delay", `${(index % 2) * 90}ms`);
+    });
+
+    const credentialCards = Array.from(document.querySelectorAll(".credentials-grid .credential-card"));
+    credentialCards.forEach((card, index) => {
+      card.style.setProperty("--reveal-delay", `${index * 80}ms`);
     });
 
     revealObserver = new IntersectionObserver((entries) => {
