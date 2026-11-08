@@ -312,13 +312,13 @@ button {
   background: var(--dark-navy);
   color: var(--green);
   pointer-events: none;
-  animation: loader-dismiss 450ms ease 850ms forwards;
+  animation: loader-dismiss 300ms var(--easing) 2250ms forwards;
 }
 
 .loader-mark {
-  width: 64px;
+  width: 84px;
   overflow: visible;
-  animation: loader-arrive 800ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  animation: loader-shrink 300ms cubic-bezier(0.7, 0, 0.84, 0) 1900ms forwards;
 }
 
 .loader-mark polygon {
@@ -326,26 +326,16 @@ button {
   stroke: currentColor;
   stroke-dasharray: 260;
   stroke-dashoffset: 260;
+  stroke-linecap: round;
   stroke-linejoin: round;
-  stroke-width: 4;
-  animation: loader-draw 680ms ease 80ms forwards;
+  stroke-width: 4.5;
+  animation: loader-draw 1200ms cubic-bezier(0.65, 0, 0.35, 1) 150ms forwards;
 }
 
 .loader-mark path {
   fill: currentColor;
   opacity: 0;
-  animation: loader-letter 240ms ease 520ms forwards;
-}
-
-@keyframes loader-arrive {
-  from {
-    opacity: 0;
-    transform: scale(0.84) rotate(-8deg);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1) rotate(0);
-  }
+  animation: loader-letter 450ms var(--easing) 1250ms forwards;
 }
 
 @keyframes loader-draw {
@@ -357,6 +347,13 @@ button {
 @keyframes loader-letter {
   to {
     opacity: 1;
+  }
+}
+
+@keyframes loader-shrink {
+  to {
+    opacity: 0;
+    transform: scale(0.12);
   }
 }
 
@@ -372,16 +369,16 @@ button {
   animation: hero-intro 650ms var(--easing) forwards;
 }
 
-.hero-content > :nth-child(1) { animation-delay: 950ms; }
-.hero-content > :nth-child(2) { animation-delay: 1050ms; }
-.hero-content > :nth-child(3) { animation-delay: 1150ms; }
-.hero-content > :nth-child(4) { animation-delay: 1250ms; }
-.hero-content > :nth-child(5) { animation-delay: 1350ms; }
+.hero-content > :nth-child(1) { animation-delay: 2550ms; }
+.hero-content > :nth-child(2) { animation-delay: 2650ms; }
+.hero-content > :nth-child(3) { animation-delay: 2750ms; }
+.hero-content > :nth-child(4) { animation-delay: 2850ms; }
+.hero-content > :nth-child(5) { animation-delay: 2950ms; }
 
 @media (min-width: 901px) {
   .site-header .brand {
     opacity: 0;
-    animation: fade-in 500ms var(--easing) 700ms forwards;
+    animation: fade-in 500ms var(--easing) 2250ms forwards;
   }
 
   .primary-nav > a {
@@ -389,22 +386,22 @@ button {
     animation: nav-intro 450ms var(--easing) forwards;
   }
 
-  .primary-nav > a:nth-child(1) { animation-delay: 720ms; }
-  .primary-nav > a:nth-child(2) { animation-delay: 800ms; }
-  .primary-nav > a:nth-child(3) { animation-delay: 880ms; }
-  .primary-nav > a:nth-child(4) { animation-delay: 960ms; }
-  .primary-nav > a:nth-child(5) { animation-delay: 1040ms; }
-  .primary-nav > a:nth-child(6) { animation-delay: 1120ms; }
+  .primary-nav > a:nth-child(1) { animation-delay: 2250ms; }
+  .primary-nav > a:nth-child(2) { animation-delay: 2330ms; }
+  .primary-nav > a:nth-child(3) { animation-delay: 2410ms; }
+  .primary-nav > a:nth-child(4) { animation-delay: 2490ms; }
+  .primary-nav > a:nth-child(5) { animation-delay: 2570ms; }
+  .primary-nav > a:nth-child(6) { animation-delay: 2650ms; }
 
   .side-rail {
     opacity: 0;
-    animation: fade-in 600ms var(--easing) 1450ms forwards;
+    animation: fade-in 600ms var(--easing) 3050ms forwards;
   }
 }
 
 .scroll-cue {
   opacity: 0;
-  animation: fade-in 600ms var(--easing) 1500ms forwards;
+  animation: fade-in 600ms var(--easing) 3100ms forwards;
 }
 
 body.loader-skipped .page-loader {

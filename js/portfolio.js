@@ -6,16 +6,8 @@
   const header = document.querySelector(".site-header");
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
-  try {
-    if (window.location.hash || window.sessionStorage.getItem("portfolio-loader-seen") === "1") {
-      document.body.classList.add("loader-skipped");
-    } else {
-      window.sessionStorage.setItem("portfolio-loader-seen", "1");
-    }
-  } catch {
-    if (window.location.hash) {
-      document.body.classList.add("loader-skipped");
-    }
+  if (window.location.hash) {
+    document.body.classList.add("loader-skipped");
   }
 
   const menuToggle = document.querySelector(".menu-toggle");
