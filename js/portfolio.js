@@ -164,8 +164,8 @@
         y: Math.random() * height,
         vx: (Math.random() - 0.5) * 0.42,
         vy: (Math.random() - 0.5) * 0.42,
-        radius: Math.random() * 1.3 + 0.6,
-        opacity: Math.random() * 0.4 + 0.25
+        radius: Math.random() * 1.4 + 0.85,
+        opacity: Math.random() * 0.45 + 0.55
       }));
     };
 
@@ -205,7 +205,7 @@
           const offsetY = particle.y - other.y;
           const distanceSquared = offsetX * offsetX + offsetY * offsetY;
           if (distanceSquared < connectionDistanceSquared) {
-            const alpha = (1 - distanceSquared / connectionDistanceSquared) * 0.2;
+            const alpha = (1 - distanceSquared / connectionDistanceSquared) * 0.35;
             context.beginPath();
             context.moveTo(particle.x, particle.y);
             context.lineTo(other.x, other.y);
