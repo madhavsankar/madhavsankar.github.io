@@ -115,7 +115,7 @@ button {
 
 .skip-link {
   position: fixed;
-  z-index: 20;
+  z-index: 110;
   top: 12px;
   left: 12px;
   padding: 10px 16px;
@@ -148,6 +148,9 @@ button {
   min-height: 70px;
   background: rgb(10 25 47 / 85%);
   box-shadow: 0 10px 30px -10px rgb(2 12 27 / 70%);
+}
+
+.site-header.is-scrolled:not(.menu-open) {
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
 }
@@ -684,10 +687,44 @@ body.loader-skipped .scroll-cue { animation-delay: 760ms; }
   transform: translateY(0);
 }
 
-.motion-enhanced .project-grid .project-card,
-.motion-enhanced .credentials-grid .credential-card,
-.motion-enhanced .archive-grid .project-card {
+.motion-enhanced .project-grid .project-card:not(.is-visible),
+.motion-enhanced .credentials-grid .credential-card:not(.is-visible),
+.motion-enhanced .archive-grid .project-card:not(.is-visible) {
   transition-delay: var(--reveal-delay, 0ms);
+}
+
+.motion-enhanced .project-grid .project-card:not(.featured-project):nth-of-type(even) {
+  --reveal-delay: 90ms;
+}
+
+.motion-enhanced .credentials-grid .credential-card:nth-child(2) {
+  --reveal-delay: 80ms;
+}
+
+.motion-enhanced .credentials-grid .credential-card:nth-child(3) {
+  --reveal-delay: 160ms;
+}
+
+.motion-enhanced .credentials-grid .credential-card:nth-child(4) {
+  --reveal-delay: 240ms;
+}
+
+.motion-enhanced .archive-grid .project-card:nth-child(even) {
+  --reveal-delay: 75ms;
+}
+
+.motion-enhanced .project-card.scroll-reveal.is-visible {
+  transition:
+    opacity 650ms cubic-bezier(0.2, 0.7, 0.25, 1),
+    transform 250ms var(--easing),
+    background-color 250ms var(--easing),
+    box-shadow 250ms var(--easing);
+  transition-delay: 0ms;
+}
+
+.motion-enhanced .project-card.scroll-reveal.is-visible:hover,
+.motion-enhanced .project-card.scroll-reveal.is-visible:focus-within {
+  transform: translateY(-7px);
 }
 
 .section-heading {
@@ -1012,6 +1049,15 @@ body.loader-skipped .scroll-cue { animation-delay: 760ms; }
 .project-card p {
   margin: 0;
   font-size: 14px;
+}
+
+.project-card p + p {
+  margin-top: 12px;
+}
+
+.project-card .role-date {
+  margin: 0 0 12px;
+  font-size: 11px;
 }
 
 .project-card .tag-list {
@@ -1358,7 +1404,7 @@ body.loader-skipped .scroll-cue { animation-delay: 760ms; }
 
   .hero-vignette {
     background:
-      radial-gradient(ellipse 95% 70% at 40% 43%, rgb(0 0 0 / 82%) 0%, rgb(0 0 0 / 35%) 66%, transparent 100%),
+      radial-gradient(ellipse 95% 70% at 40% 43%, rgb(0 0 0 / 60%) 0%, rgb(0 0 0 / 22%) 66%, transparent 100%),
       linear-gradient(to bottom, rgb(0 0 0 / 15%) 0%, transparent 50%, rgb(2 12 27 / 80%) 88%, var(--navy) 100%);
   }
 
@@ -1389,8 +1435,9 @@ body.loader-skipped .scroll-cue { animation-delay: 760ms; }
   .experience-tabs {
     flex-direction: row;
     overflow-x: auto;
-    border-bottom: 2px solid var(--lightest-navy);
+    border-bottom: 0;
     border-left: 0;
+    background: linear-gradient(to top, var(--lightest-navy) 2px, transparent 2px);
   }
 
   .experience-tab {

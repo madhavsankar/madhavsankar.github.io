@@ -6,7 +6,7 @@
   const header = document.querySelector(".site-header");
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
-  if (window.location.hash) {
+  if (window.location.hash || !document.querySelector(".page-loader")) {
     document.body.classList.add("loader-skipped");
   }
 
@@ -46,7 +46,7 @@
 
     primaryNav.addEventListener("click", (event) => {
       if (event.target.closest("a[href]") && menuToggle.getAttribute("aria-expanded") === "true") {
-        setMenuOpen(false, true);
+        setMenuOpen(false, false);
       }
     });
 
@@ -83,6 +83,11 @@
   let revealObserver = null;
 
   const initializeReveals = () => {
+    if (revealObserver) {
+      revealObserver.disconnect();
+      revealObserver = null;
+    }
+
     revealItems = Array.from(document.querySelectorAll(
       ".content-section, .project-grid .project-card, .credentials-grid .credential-card, .archive-main > .section-kicker, .archive-main > .section-heading, .archive-intro, .archive-grid .project-card"
     ));
@@ -95,20 +100,6 @@
     }
 
     document.body.classList.add("motion-enhanced");
-    const archiveCards = Array.from(document.querySelectorAll(".archive-grid .project-card"));
-    archiveCards.forEach((card, index) => {
-      card.style.setProperty("--reveal-delay", `${Math.min(index * 45, 270)}ms`);
-    });
-
-    const projectCards = Array.from(document.querySelectorAll(".project-grid .project-card:not(.featured-project)"));
-    projectCards.forEach((card, index) => {
-      card.style.setProperty("--reveal-delay", `${(index % 2) * 90}ms`);
-    });
-
-    const credentialCards = Array.from(document.querySelectorAll(".credentials-grid .credential-card"));
-    credentialCards.forEach((card, index) => {
-      card.style.setProperty("--reveal-delay", `${index * 80}ms`);
-    });
 
     revealObserver = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
@@ -260,15 +251,25 @@
   }
 
   const experienceTabList = document.querySelector('[role="tablist"]');
+  let tabHighlightSheet = null;
+  if (experienceTabList && "adoptedStyleSheets" in document && typeof CSSStyleSheet === "function") {
+    try {
+      tabHighlightSheet = new CSSStyleSheet();
+      document.adoptedStyleSheets = [...document.adoptedStyleSheets, tabHighlightSheet];
+    } catch (_) {
+      tabHighlightSheet = null;
+    }
+  }
 
   const updateTabHighlight = (activeTab) => {
     if (!experienceTabList) return;
     const tab = activeTab || experienceTabList.querySelector('.experience-tab[aria-selected="true"]');
     if (!tab) return;
-    experienceTabList.style.setProperty("--tab-offset-y", `${tab.offsetTop}px`);
-    experienceTabList.style.setProperty("--tab-height", `${tab.offsetHeight}px`);
-    experienceTabList.style.setProperty("--tab-offset-x", `${tab.offsetLeft}px`);
-    experienceTabList.style.setProperty("--tab-width", `${tab.offsetWidth}px`);
+    if (tabHighlightSheet) {
+      tabHighlightSheet.replaceSync(
+        `[role="tablist"] { --tab-offset-y: ${tab.offsetTop}px; --tab-height: ${tab.offsetHeight}px; --tab-offset-x: ${tab.offsetLeft}px; --tab-width: ${tab.offsetWidth}px; }`
+      );
+    }
   };
 
   const setActiveTab = (tab) => {
@@ -343,28 +344,49 @@
   }
 
   const navSectionLinks = Array.from(document.querySelectorAll('.primary-nav a[href^="#"]'));
-  if (navSectionLinks.length && "IntersectionObserver" in window) {
-    const sectionMap = new Map();
+  if (navSectionLinks.length) {
+    const trackedSections = [];
     navSectionLinks.forEach((link) => {
       const id = link.getAttribute("href").slice(1);
       const section = id && document.getElementById(id);
-      if (section) sectionMap.set(section, link);
+      if (section) trackedSections.push({ section, link });
     });
 
-    const spyObserver = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        const link = sectionMap.get(entry.target);
-        if (link && entry.isIntersecting) {
-          navSectionLinks.forEach((item) => {
-            item.classList.toggle("is-active", item === link);
-          });
+    if (trackedSections.length) {
+      const updateScrollSpy = () => {
+        const scrollY = window.scrollY;
+        const viewportHeight = window.innerHeight;
+        const docHeight = document.documentElement.scrollHeight;
+        const firstTop = trackedSections[0].section.offsetTop;
+
+        if (scrollY < firstTop - viewportHeight * 0.45) {
+          navSectionLinks.forEach((item) => item.classList.remove("is-active"));
+          return;
         }
-      });
-    }, { rootMargin: "-30% 0px -55% 0px", threshold: 0 });
 
-    sectionMap.forEach((_, section) => {
-      spyObserver.observe(section);
-    });
+        if (viewportHeight + scrollY >= docHeight - 40) {
+          const lastLink = trackedSections[trackedSections.length - 1].link;
+          navSectionLinks.forEach((item) => item.classList.toggle("is-active", item === lastLink));
+          return;
+        }
+
+        const triggerLine = scrollY + viewportHeight * 0.38;
+        let activeLink = trackedSections[0].link;
+        trackedSections.forEach(({ section, link }) => {
+          if (section.offsetTop <= triggerLine) {
+            activeLink = link;
+          }
+        });
+
+        navSectionLinks.forEach((item) => {
+          item.classList.toggle("is-active", item === activeLink);
+        });
+      };
+
+      updateScrollSpy();
+      window.addEventListener("scroll", updateScrollSpy, { passive: true });
+      window.addEventListener("resize", updateScrollSpy);
+    }
   }
 
   document.querySelectorAll(".project-card").forEach((card) => {
